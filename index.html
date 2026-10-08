@@ -2,1053 +2,1458 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiniPraathuis | Een plek voor iedereen</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f9fc;
-      color: #20283a;
-      line-height: 1.6;
-    }
-
-    /* NAVIGATIE */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-    }
-
-    nav {
-      max-width: 1200px;
-      margin: auto;
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 25px;
-    }
-
-    .logo {
-      font-size: 26px;
-      font-weight: 900;
-      color: #5b35d5;
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: #ff7a45;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #252b3a;
-      font-weight: 700;
-      transition: 0.2s;
-    }
-
-    nav a:hover {
-      color: #5b35d5;
-    }
-
-    .nav-button {
-      background: #5b35d5;
-      color: white !important;
-      padding: 11px 18px;
-      border-radius: 999px;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 650px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 85% 20%, rgba(255,122,69,0.25), transparent 30%),
-        radial-gradient(circle at 10% 80%, rgba(91,53,213,0.25), transparent 35%),
-        linear-gradient(135deg, #eef0ff, #fff7f2);
-    }
-
-    .hero-content {
-      width: min(1200px, 92%);
-      margin: auto;
-      padding: 80px 0;
-    }
-
-    .badge {
-      display: inline-block;
-      background: white;
-      color: #5b35d5;
-      padding: 9px 16px;
-      border-radius: 999px;
-      font-weight: 800;
-      margin-bottom: 20px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    }
-
-    .hero h1 {
-      max-width: 800px;
-      font-size: clamp(45px, 7vw, 82px);
-      line-height: 0.98;
-      margin-bottom: 25px;
-      letter-spacing: -3px;
-    }
-
-    .hero h1 span {
-      color: #5b35d5;
-    }
-
-    .hero p {
-      max-width: 650px;
-      font-size: 20px;
-      color: #596174;
-      margin-bottom: 35px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 800;
-      padding: 15px 24px;
-      border-radius: 12px;
-      transition: 0.2s;
-    }
-
-    .btn-primary {
-      background: #5b35d5;
-      color: white;
-      box-shadow: 0 10px 25px rgba(91,53,213,0.25);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      background: #4826b8;
-    }
-
-    .btn-secondary {
-      background: white;
-      color: #252b3a;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-    }
-
-    /* SECTIES */
-    section {
-      padding: 90px 20px;
-    }
-
-    .container {
-      max-width: 1150px;
-      margin: auto;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .section-title small {
-      color: #ff7043;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(32px, 5vw, 52px);
-      margin: 8px 0 12px;
-    }
-
-    .section-title p {
-      max-width: 650px;
-      margin: auto;
-      color: #697184;
-    }
-
-    /* OVER ONS */
-    .about {
-      background: white;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .about-box {
-      background: linear-gradient(135deg, #5b35d5, #7a58e8);
-      color: white;
-      border-radius: 25px;
-      padding: 45px;
-      min-height: 350px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      box-shadow: 0 20px 45px rgba(91,53,213,0.2);
-    }
-
-    .about-box .big {
-      font-size: 70px;
-      margin-bottom: 15px;
-    }
-
-    .about-text h3 {
-      font-size: 32px;
-      margin-bottom: 15px;
-    }
-
-    .about-text p {
-      color: #626b7d;
-      margin-bottom: 18px;
-    }
-
-    /* ACTIVITEITEN */
-    .activities-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 22px;
-      box-shadow: 0 8px 30px rgba(25,30,50,0.07);
-      transition: 0.25s;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 15px 35px rgba(25,30,50,0.12);
-    }
-
-    .icon {
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      border-radius: 16px;
-      background: #eeeaff;
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .card h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      color: #687184;
-    }
-
-    /* AGENDA */
-    .agenda {
-      background: #f0efff;
-    }
-
-    .agenda-list {
-      max-width: 850px;
-      margin: auto;
-      display: grid;
-      gap: 16px;
-    }
-
-    .agenda-item {
-      background: white;
-      border-radius: 18px;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 90px 1fr auto;
-      align-items: center;
-      gap: 20px;
-      box-shadow: 0 7px 25px rgba(0,0,0,0.06);
-    }
-
-    .date {
-      text-align: center;
-      background: #5b35d5;
-      color: white;
-      border-radius: 13px;
-      padding: 10px;
-    }
-
-    .date strong {
-      display: block;
-      font-size: 26px;
-    }
-
-    .date span {
-      font-size: 12px;
-      text-transform: uppercase;
-    }
-
-    .agenda-item h3 {
-      margin-bottom: 3px;
-    }
-
-    .agenda-item p {
-      color: #70798b;
-    }
-
-    /* FOTO'S */
-    .photos {
-      background: white;
-    }
-
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .photo {
-      min-height: 220px;
-      border-radius: 20px;
-      display: flex;
-      align-items: end;
-      padding: 20px;
-      overflow: hidden;
-      background: linear-gradient(135deg, #ddd9ff, #ffe1d4);
-      position: relative;
-    }
-
-    .photo:nth-child(2) {
-      background: linear-gradient(135deg, #ffd8c7, #fff1d2);
-    }
-
-    .photo:nth-child(3) {
-      background: linear-gradient(135deg, #d8e7ff, #e9dcff);
-    }
-
-    .photo:nth-child(4) {
-      background: linear-gradient(135deg, #d7f3df, #e7e0ff);
-    }
-
-    .photo:nth-child(5) {
-      background: linear-gradient(135deg, #ffe0ef, #ffe7c9);
-    }
-
-    .photo:nth-child(6) {
-      background: linear-gradient(135deg, #d8f1ff, #e5ddff);
-    }
-
-    .photo-content {
-      background: rgba(255,255,255,0.9);
-      border-radius: 12px;
-      padding: 10px 14px;
-      font-weight: 800;
-      width: 100%;
-    }
-
-    /* AANMELDEN */
-    .signup {
-      background: linear-gradient(135deg, #5b35d5, #4021a6);
-      color: white;
-    }
-
-    .signup-grid {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 50px;
-      align-items: start;
-    }
-
-    .signup h2 {
-      font-size: 48px;
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-
-    .signup p {
-      color: #e2ddff;
-    }
-
-    form {
-      background: white;
-      padding: 30px;
-      border-radius: 22px;
-      color: #20283a;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.15);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    label {
-      display: block;
-      font-weight: 800;
-      margin-bottom: 7px;
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      border: 2px solid #e5e8ef;
-      border-radius: 11px;
-      padding: 13px;
-      font: inherit;
-      margin-bottom: 18px;
-      outline: none;
-      transition: 0.2s;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: #5b35d5;
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    form .btn {
-      width: 100%;
-    }
-
-    /* CONTACT */
-    .contact {
-      background: white;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .contact-card {
-      text-align: center;
-      background: #f7f8fc;
-      padding: 30px;
-      border-radius: 20px;
-    }
-
-    .contact-card .icon {
-      margin: 0 auto 15px;
-    }
-
-    .contact-card h3 {
-      margin-bottom: 8px;
-    }
-
-    .contact-card p {
-      color: #6b7385;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #171a27;
-      color: white;
-      padding: 50px 20px 25px;
-    }
-
-    .footer-grid {
-      max-width: 1150px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    footer h3 {
-      margin-bottom: 12px;
-    }
-
-    footer p,
-    footer a {
-      color: #aeb4c3;
-    }
-
-    footer a {
-      text-decoration: none;
-      display: block;
-      margin-bottom: 7px;
-    }
-
-    .copyright {
-      max-width: 1150px;
-      margin: 40px auto 0;
-      padding-top: 20px;
-      border-top: 1px solid #303444;
-      color: #8d94a4;
-      font-size: 14px;
-    }
-
-    /* MOBIEL */
-    @media (max-width: 850px) {
-      nav ul {
-        display: none;
-      }
-
-      .hero {
-        min-height: 580px;
-      }
-
-      .about-grid,
-      .signup-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .activities-grid,
-      .photo-grid,
-      .contact-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 600px) {
-      section {
-        padding: 65px 16px;
-      }
-
-      .hero-content {
-        padding: 60px 0;
-      }
-
-      .hero h1 {
-        letter-spacing: -2px;
-      }
-
-      .activities-grid,
-      .photo-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .agenda-item {
-        grid-template-columns: 70px 1fr;
-      }
-
-      .agenda-item .btn {
-        grid-column: 1 / -1;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      .about-box {
-        padding: 30px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MiniPraathuis | Doelstraat 4</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f7f8fc;
+    color:#202337;
+}
+
+/* =========================
+   NAVIGATIE
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(12px);
+    box-shadow:0 3px 18px rgba(0,0,0,.08);
+}
+
+nav{
+    max-width:1200px;
+    margin:auto;
+    min-height:76px;
+    padding:0 25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    text-decoration:none;
+    font-size:27px;
+    font-weight:900;
+    color:#5d35d5;
+}
+
+.logo span{
+    color:#ff7447;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#25283a;
+    font-weight:700;
+}
+
+nav a:hover{
+    color:#5d35d5;
+}
+
+.nav-button{
+    background:#5d35d5;
+    color:white!important;
+    padding:11px 18px;
+    border-radius:30px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at 85% 15%,rgba(255,116,71,.25),transparent 28%),
+        radial-gradient(circle at 10% 80%,rgba(93,53,213,.25),transparent 35%),
+        linear-gradient(135deg,#eeeeff,#fff5ef);
+}
+
+.hero-inner{
+    width:min(1150px,92%);
+    margin:auto;
+    padding:90px 0;
+}
+
+.badge{
+    display:inline-block;
+    background:white;
+    color:#5d35d5;
+    padding:10px 17px;
+    border-radius:30px;
+    font-weight:800;
+    margin-bottom:22px;
+    box-shadow:0 6px 25px rgba(0,0,0,.08);
+}
+
+.hero h1{
+    max-width:850px;
+    font-size:clamp(45px,7vw,82px);
+    line-height:.98;
+    letter-spacing:-4px;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#5d35d5;
+}
+
+.hero p{
+    max-width:680px;
+    color:#626a7d;
+    font-size:20px;
+    margin-bottom:35px;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    border:none;
+    text-decoration:none;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:800;
+    padding:15px 23px;
+    border-radius:13px;
+    transition:.2s;
+}
+
+.primary{
+    background:#5d35d5;
+    color:white;
+    box-shadow:0 10px 25px rgba(93,53,213,.25);
+}
+
+.primary:hover{
+    background:#4724b6;
+    transform:translateY(-2px);
+}
+
+.secondary{
+    background:white;
+    color:#25283a;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.secondary:hover{
+    transform:translateY(-2px);
+}
+
+/* =========================
+   ALGEMEEN
+========================= */
+
+section{
+    padding:90px 20px;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title small{
+    color:#ff7447;
+    text-transform:uppercase;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.section-title h2{
+    font-size:clamp(32px,5vw,52px);
+    margin:8px 0 12px;
+}
+
+.section-title p{
+    max-width:650px;
+    margin:auto;
+    color:#6b7385;
+}
+
+/* =========================
+   OVER ONS
+========================= */
+
+.about{
+    background:white;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.about-card{
+    min-height:360px;
+    padding:45px;
+    border-radius:28px;
+    color:white;
+
+    background:
+        linear-gradient(135deg,#5d35d5,#7b59e8);
+
+    box-shadow:0 20px 45px rgba(93,53,213,.2);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.about-card .emoji{
+    font-size:70px;
+    margin-bottom:15px;
+}
+
+.about-card h3{
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.about-text h3{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.about-text p{
+    color:#687184;
+    margin-bottom:18px;
+}
+
+/* =========================
+   ACTIVITEITEN
+========================= */
+
+.activities{
+    background:#f7f8fc;
+}
+
+.activity-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.activity{
+    background:white;
+    padding:30px;
+    border-radius:22px;
+    box-shadow:0 8px 30px rgba(25,30,50,.07);
+    transition:.25s;
+}
+
+.activity:hover{
+    transform:translateY(-6px);
+    box-shadow:0 16px 35px rgba(25,30,50,.12);
+}
+
+.activity-icon{
+    width:60px;
+    height:60px;
+    display:grid;
+    place-items:center;
+    border-radius:17px;
+    background:#eeeaff;
+    font-size:29px;
+    margin-bottom:20px;
+}
+
+.activity h3{
+    font-size:21px;
+    margin-bottom:9px;
+}
+
+.activity p{
+    color:#687184;
+}
+
+/* =========================
+   AGENDA
+========================= */
+
+.agenda{
+    background:#efedff;
+}
+
+.agenda-list{
+    max-width:850px;
+    margin:auto;
+    display:grid;
+    gap:17px;
+}
+
+.agenda-item{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    display:grid;
+    grid-template-columns:80px 1fr auto;
+    align-items:center;
+    gap:20px;
+    box-shadow:0 7px 25px rgba(0,0,0,.06);
+}
+
+.date{
+    text-align:center;
+    background:#5d35d5;
+    color:white;
+    border-radius:13px;
+    padding:10px;
+}
+
+.date strong{
+    display:block;
+    font-size:26px;
+}
+
+.date span{
+    font-size:11px;
+    text-transform:uppercase;
+}
+
+.agenda-item p{
+    color:#70798b;
+}
+
+/* =========================
+   FOTO'S
+========================= */
+
+.photos{
+    background:white;
+}
+
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.photo{
+    height:230px;
+    border-radius:22px;
+    padding:20px;
+    display:flex;
+    align-items:end;
+    overflow:hidden;
+
+    background:
+        linear-gradient(135deg,#ddd9ff,#ffe1d4);
+}
+
+.photo:nth-child(2){
+    background:linear-gradient(135deg,#ffd8c7,#fff0cf);
+}
+
+.photo:nth-child(3){
+    background:linear-gradient(135deg,#d8e7ff,#e8dcff);
+}
+
+.photo:nth-child(4){
+    background:linear-gradient(135deg,#d8f3df,#e8e0ff);
+}
+
+.photo:nth-child(5){
+    background:linear-gradient(135deg,#ffe0ef,#ffe7c9);
+}
+
+.photo:nth-child(6){
+    background:linear-gradient(135deg,#d8f1ff,#e5ddff);
+}
+
+.photo-label{
+    width:100%;
+    padding:11px 14px;
+    background:rgba(255,255,255,.9);
+    border-radius:12px;
+    font-weight:800;
+}
+
+/* =========================
+   AANMELDEN
+========================= */
+
+.signup{
+    background:linear-gradient(135deg,#5d35d5,#3f209f);
+    color:white;
+}
+
+.signup-grid{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:50px;
+    align-items:start;
+}
+
+.signup h2{
+    font-size:50px;
+    line-height:1;
+    margin-bottom:20px;
+}
+
+.signup-text{
+    color:#e2ddff;
+    font-size:17px;
+}
+
+form{
+    background:white;
+    color:#202337;
+    padding:32px;
+    border-radius:24px;
+    box-shadow:0 20px 45px rgba(0,0,0,.18);
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+label{
+    display:block;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    border:2px solid #e5e8ef;
+    border-radius:11px;
+    padding:13px;
+    font:inherit;
+    margin-bottom:18px;
+    outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#5d35d5;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+form .btn{
+    width:100%;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+    background:white;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.contact-card{
+    text-align:center;
+    padding:32px;
+    border-radius:22px;
+    background:#f7f8fc;
+}
+
+.contact-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.contact-card h3{
+    margin-bottom:8px;
+}
+
+.contact-card p{
+    color:#6b7385;
+    margin-bottom:17px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#171a27;
+    color:white;
+    padding:55px 20px 25px;
+}
+
+.footer-grid{
+    max-width:1150px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:40px;
+}
+
+footer h3{
+    margin-bottom:12px;
+}
+
+footer p,
+footer a{
+    color:#aeb4c3;
+}
+
+footer a{
+    display:block;
+    text-decoration:none;
+    margin-bottom:7px;
+}
+
+.copyright{
+    max-width:1150px;
+    margin:40px auto 0;
+    padding-top:20px;
+    border-top:1px solid #303444;
+    color:#8d94a4;
+    font-size:14px;
+}
+
+/* =========================
+   MOBIEL
+========================= */
+
+@media(max-width:850px){
+
+    nav ul{
+        display:none;
+    }
+
+    .about-grid,
+    .signup-grid{
+        grid-template-columns:1fr;
+    }
+
+    .activity-grid,
+    .photo-grid,
+    .contact-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:65px 16px;
+    }
+
+    .hero-inner{
+        padding:65px 0;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
+    .activity-grid,
+    .photo-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .agenda-item{
+        grid-template-columns:70px 1fr;
+    }
+
+    .agenda-item .btn{
+        grid-column:1/-1;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .about-card{
+        padding:30px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-  <nav>
-    <a class="logo" href="#home">Mini<span>Praathuis</span></a>
 
-    <ul>
-      <li><a href="#over-ons">Over ons</a></li>
-      <li><a href="#activiteiten">Activiteiten</a></li>
-      <li><a href="#agenda">Agenda</a></li>
-      <li><a href="#fotos">Foto's</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a class="nav-button" href="#aanmelden">Aanmelden</a></li>
-    </ul>
-  </nav>
+<!-- NAVIGATIE -->
+
+<header>
+
+<nav>
+
+<a href="#home" class="logo">
+Mini<span>Praathuis</span>
+</a>
+
+<ul>
+
+<li><a href="#over-ons">Over ons</a></li>
+
+<li><a href="#activiteiten">Activiteiten</a></li>
+
+<li><a href="#agenda">Agenda</a></li>
+
+<li><a href="#fotos">Foto's</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+<li>
+<a href="#aanmelden" class="nav-button">
+Aanmelden
+</a>
+</li>
+
+</ul>
+
+</nav>
+
 </header>
+
 
 <main>
 
-  <!-- HOME -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-
-      <div class="badge">💜 Welkom bij het MiniPraathuis</div>
-
-      <h1>
-        Een plek om te
-        <span>praten, lachen</span>
-        en samen te zijn.
-      </h1>
-
-      <p>
-        Bij het MiniPraathuis draait het om ontmoeting, gezelligheid
-        en elkaar leren kennen. Iedereen mag binnenkomen zoals hij of zij is.
-      </p>
-
-      <div class="buttons">
-        <a href="#aanmelden" class="btn btn-primary">Aanmelden →</a>
-        <a href="#activiteiten" class="btn btn-secondary">Bekijk activiteiten</a>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- OVER ONS -->
-  <section class="about" id="over-ons">
-    <div class="container">
-
-      <div class="section-title">
-        <small>Wie zijn wij?</small>
-        <h2>Welkom in het MiniPraathuis</h2>
-        <p>
-          Een gezellige plek waar mensen elkaar ontmoeten,
-          ervaringen delen en samen activiteiten ondernemen.
-        </p>
-      </div>
-
-      <div class="about-grid">
-
-        <div class="about-box">
-          <div class="big">💬</div>
-          <h3>Iedereen is welkom</h3>
-          <p>
-            Een goed gesprek, een kop koffie of gewoon even
-            gezellig samen zijn. Bij ons hoeft niets ingewikkeld te zijn.
-          </p>
-        </div>
-
-        <div class="about-text">
-          <h3>Samen maken we de buurt sterker.</h3>
-
-          <p>
-            Het MiniPraathuis is er voor ontmoeting en verbinding.
-            We willen een plek bieden waar mensen zich welkom voelen
-            en waar ruimte is voor een goed gesprek.
-          </p>
-
-          <p>
-            Of je nu komt voor een activiteit, een praatje of gewoon
-            om nieuwe mensen te ontmoeten: je bent welkom.
-          </p>
-
-          <a href="#aanmelden" class="btn btn-primary">
-            Kom gezellig langs
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ACTIVITEITEN -->
-  <section id="activiteiten">
-    <div class="container">
-
-      <div class="section-title">
-        <small>Doe gezellig mee</small>
-        <h2>Onze activiteiten</h2>
-        <p>
-          Bekijk een aantal activiteiten die bij het MiniPraathuis
-          kunnen plaatsvinden.
-        </p>
-      </div>
-
-      <div class="activities-grid">
-
-        <div class="card">
-          <div class="icon">☕</div>
-          <h3>Koffie & Praatje</h3>
-          <p>
-            Even binnenlopen, een kop koffie drinken en gezellig
-            met anderen praten.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🎨</div>
-          <h3>Creatieve activiteiten</h3>
-          <p>
-            Samen creatief bezig zijn en leuke dingen maken.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="icon">👩</div>
-          <h3>Vrouwenactiviteiten</h3>
-          <p>
-            Gezellige activiteiten en ontmoetingen voor vrouwen.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🧒</div>
-          <h3>Kinderclub</h3>
-          <p>
-            Leuke activiteiten en momenten speciaal voor kinderen.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🎮</div>
-          <h3>Tieneractiviteiten</h3>
-          <p>
-            Samenkomen, plezier maken en nieuwe mensen ontmoeten.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="icon">❤️</div>
-          <h3>Ontmoeten</h3>
-          <p>
-            Soms is een goed gesprek precies wat je nodig hebt.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- AGENDA -->
-  <section class="agenda" id="agenda">
-    <div class="container">
-
-      <div class="section-title">
-        <small>Wat staat er op de planning?</small>
-        <h2>Agenda</h2>
-        <p>
-          Hier kun je binnenkort onze activiteiten en bijeenkomsten
-          terugvinden.
-        </p>
-      </div>
-
-      <div class="agenda-list">
-
-        <div class="agenda-item">
-          <div class="date">
-            <strong>01</strong>
-            <span>Dag</span>
-          </div>
-
-          <div>
-            <h3>Koffie & Praatje</h3>
-            <p>Gezellig samenkomen en elkaar ontmoeten.</p>
-          </div>
-
-          <a href="#aanmelden" class="btn btn-primary">Meedoen</a>
-        </div>
-
-        <div class="agenda-item">
-          <div class="date">
-            <strong>08</strong>
-            <span>Dag</span>
-          </div>
-
-          <div>
-            <h3>Creatieve middag</h3>
-            <p>Een gezellige middag vol creativiteit.</p>
-          </div>
-
-          <a href="#aanmelden" class="btn btn-primary">Meedoen</a>
-        </div>
-
-        <div class="agenda-item">
-          <div class="date">
-            <strong>15</strong>
-            <span>Dag</span>
-          </div>
-
-          <div>
-            <h3>Ontmoetingsmiddag</h3>
-            <p>Nieuwe mensen ontmoeten en gezellig bijpraten.</p>
-          </div>
-
-          <a href="#aanmelden" class="btn btn-primary">Meedoen</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- FOTO'S -->
-  <section class="photos" id="fotos">
-    <div class="container">
-
-      <div class="section-title">
-        <small>Sfeer</small>
-        <h2>Foto's</h2>
-        <p>
-          Een kleine impressie van de sfeer van het MiniPraathuis.
-        </p>
-      </div>
-
-      <div class="photo-grid">
-
-        <div class="photo">
-          <div class="photo-content">☕ Samen koffie drinken</div>
-        </div>
-
-        <div class="photo">
-          <div class="photo-content">😊 Gezelligheid</div>
-        </div>
-
-        <div class="photo">
-          <div class="photo-content">🎨 Creatief bezig</div>
-        </div>
-
-        <div class="photo">
-          <div class="photo-content">👥 Samen ontmoeten</div>
-        </div>
-
-        <div class="photo">
-          <div class="photo-content">❤️ Een warm welkom</div>
-        </div>
-
-        <div class="photo">
-          <div class="photo-content">🎉 Samen plezier maken</div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- AANMELDEN -->
-  <section class="signup" id="aanmelden">
-    <div class="container">
-
-      <div class="signup-grid">
-
-        <div>
-          <h2>Wil je meedoen?</h2>
-
-          <p>
-            Vul het formulier in en laat ons weten dat je interesse hebt.
-            We nemen vervolgens contact met je op.
-          </p>
-
-          <br>
-
-          <p>
-            💜 We kijken ernaar uit je te ontmoeten!
-          </p>
-        </div>
-
-
-        <!-- FORMSPREE -->
-        <form
-          action="https://formspree.io/f/mbgdorbq"
-          method="POST"
-        >
 
-          <div class="form-row">
+<!-- HERO -->
 
-            <div>
-              <label for="naam">Naam</label>
-              <input
-                type="text"
-                id="naam"
-                name="naam"
-                placeholder="Je naam"
-                required
-              >
-            </div>
+<section class="hero" id="home">
 
-            <div>
-              <label for="email">E-mailadres</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="jouw@email.nl"
-                required
-              >
-            </div>
-
-          </div>
-
-
-          <label for="telefoon">Telefoonnummer</label>
-
-          <input
-            type="tel"
-            id="telefoon"
-            name="telefoon"
-            placeholder="06-12345678"
-          >
+<div class="hero-inner">
 
+<div class="badge">
+💜 Welkom bij het MiniPraathuis
+</div>
 
-          <label for="activiteit">Waarvoor wil je je aanmelden?</label>
+<h1>
+Een plek om te
+<span>praten, lachen</span>
+en samen te zijn.
+</h1>
 
-          <select id="activiteit" name="activiteit">
+<p>
+Het MiniPraathuis is een gezellige plek waar mensen
+elkaar kunnen ontmoeten, praten, lachen en samen
+activiteiten kunnen doen.
+</p>
 
-            <option value="Koffie & Praatje">
-              Koffie & Praatje
-            </option>
+<div class="buttons">
 
-            <option value="Creatieve activiteit">
-              Creatieve activiteit
-            </option>
+<a href="#aanmelden" class="btn primary">
+Aanmelden →
+</a>
 
-            <option value="Kinderclub">
-              Kinderclub
-            </option>
+<a href="#activiteiten" class="btn secondary">
+Bekijk activiteiten
+</a>
 
-            <option value="Tieneractiviteit">
-              Tieneractiviteit
-            </option>
+</div>
 
-            <option value="Vrouwenactiviteit">
-              Vrouwenactiviteit
-            </option>
+</div>
 
-            <option value="Anders">
-              Anders
-            </option>
+</section>
 
-          </select>
 
+<!-- OVER ONS -->
 
-          <label for="bericht">Bericht</label>
+<section class="about" id="over-ons">
 
-          <textarea
-            id="bericht"
-            name="bericht"
-            placeholder="Vertel ons eventueel nog iets..."
-          ></textarea>
+<div class="container">
 
+<div class="section-title">
 
-          <input
-            type="hidden"
-            name="_subject"
-            value="Nieuwe aanmelding MiniPraathuis"
-          >
+<small>Wie zijn wij?</small>
 
+<h2>
+Welkom bij het MiniPraathuis
+</h2>
 
-          <button class="btn btn-primary" type="submit">
-            Aanmelding versturen →
-          </button>
+<p>
+Een warme plek voor ontmoeting, gezelligheid
+en een goed gesprek.
+</p>
 
-        </form>
+</div>
 
-      </div>
-    </div>
-  </section>
 
+<div class="about-grid">
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
 
-    <div class="container">
+<div class="about-card">
 
-      <div class="section-title">
-        <small>Neem contact op</small>
-        <h2>We horen graag van je</h2>
-        <p>
-          Heb je een vraag of wil je meer weten?
-          Neem gerust contact met ons op.
-        </p>
-      </div>
+<div class="emoji">
+💬
+</div>
 
+<h3>
+Iedereen is welkom
+</h3>
 
-      <div class="contact-grid">
+<p>
+Kom langs voor een gesprek, een activiteit,
+een kop koffie of gewoon voor de gezelligheid.
+</p>
 
-        <div class="contact-card">
-          <div class="icon">📍</div>
-          <h3>Locatie</h3>
-          <p>Dordrecht</p>
-        </div>
+</div>
 
-        <div class="contact-card">
-          <div class="icon">✉️</div>
-          <h3>E-mail</h3>
-          <p>Neem contact met ons op voor meer informatie.</p>
-        </div>
 
-        <div class="contact-card">
-          <div class="icon">💬</div>
-          <h3>Praat met ons</h3>
-          <p>Je bent altijd welkom voor een gesprek.</p>
-        </div>
+<div class="about-text">
 
-      </div>
+<h3>
+Samen maken we de buurt gezelliger.
+</h3>
 
-    </div>
+<p>
+Bij het MiniPraathuis staat ontmoeting centraal.
+We willen een plek creëren waar mensen zich
+welkom voelen en waar iedereen zichzelf kan zijn.
+</p>
 
-  </section>
+<p>
+Of je nu alleen komt of samen met iemand:
+er is altijd ruimte voor een praatje.
+</p>
+
+<a href="#aanmelden" class="btn primary">
+Kom gezellig langs
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ACTIVITEITEN -->
+
+<section class="activities" id="activiteiten">
+
+<div class="container">
+
+<div class="section-title">
+
+<small>Doe gezellig mee</small>
+
+<h2>
+Onze activiteiten
+</h2>
+
+<p>
+Er is regelmatig iets leuks te doen bij het MiniPraathuis.
+</p>
+
+</div>
+
+
+<div class="activity-grid">
+
+
+<div class="activity">
+
+<div class="activity-icon">
+☕
+</div>
+
+<h3>
+Koffie & Praatje
+</h3>
+
+<p>
+Even binnenlopen, koffie drinken en gezellig
+met anderen praten.
+</p>
+
+</div>
+
+
+<div class="activity">
+
+<div class="activity-icon">
+🎨
+</div>
+
+<h3>
+Creatieve activiteiten
+</h3>
+
+<p>
+Samen creatieve dingen maken en plezier hebben.
+</p>
+
+</div>
+
+
+<div class="activity">
+
+<div class="activity-icon">
+👩
+</div>
+
+<h3>
+Vrouwenactiviteiten
+</h3>
+
+<p>
+Gezellige activiteiten en ontmoetingen voor vrouwen.
+</p>
+
+</div>
+
+
+<div class="activity">
+
+<div class="activity-icon">
+🧒
+</div>
+
+<h3>
+Kinderclub
+</h3>
+
+<p>
+Leuke activiteiten en gezellige momenten voor kinderen.
+</p>
+
+</div>
+
+
+<div class="activity">
+
+<div class="activity-icon">
+🎮
+</div>
+
+<h3>
+Tieneractiviteiten
+</h3>
+
+<p>
+Samenkomen, plezier maken en nieuwe mensen ontmoeten.
+</p>
+
+</div>
+
+
+<div class="activity">
+
+<div class="activity-icon">
+❤️
+</div>
+
+<h3>
+Ontmoeten
+</h3>
+
+<p>
+Een goed gesprek kan soms precies zijn wat je nodig hebt.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- AGENDA -->
+
+<section class="agenda" id="agenda">
+
+<div class="container">
+
+<div class="section-title">
+
+<small>Wat staat er op de planning?</small>
+
+<h2>
+Agenda
+</h2>
+
+<p>
+Hier komen de activiteiten en bijeenkomsten van het
+MiniPraathuis te staan.
+</p>
+
+</div>
+
+
+<div class="agenda-list">
+
+
+<div class="agenda-item">
+
+<div class="date">
+
+<strong>01</strong>
+
+<span>Dag</span>
+
+</div>
+
+<div>
+
+<h3>
+Koffie & Praatje
+</h3>
+
+<p>
+Gezellig samenkomen en elkaar ontmoeten.
+</p>
+
+</div>
+
+<a href="#aanmelden" class="btn primary">
+Meedoen
+</a>
+
+</div>
+
+
+<div class="agenda-item">
+
+<div class="date">
+
+<strong>08</strong>
+
+<span>Dag</span>
+
+</div>
+
+<div>
+
+<h3>
+Creatieve middag
+</h3>
+
+<p>
+Een gezellige middag vol creativiteit.
+</p>
+
+</div>
+
+<a href="#aanmelden" class="btn primary">
+Meedoen
+</a>
+
+</div>
+
+
+<div class="agenda-item">
+
+<div class="date">
+
+<strong>15</strong>
+
+<span>Dag</span>
+
+</div>
+
+<div>
+
+<h3>
+Ontmoetingsmiddag
+</h3>
+
+<p>
+Nieuwe mensen ontmoeten en gezellig bijpraten.
+</p>
+
+</div>
+
+<a href="#aanmelden" class="btn primary">
+Meedoen
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOTO'S -->
+
+<section class="photos" id="fotos">
+
+<div class="container">
+
+<div class="section-title">
+
+<small>Sfeer</small>
+
+<h2>
+Foto's
+</h2>
+
+<p>
+Een kleine impressie van de sfeer bij het MiniPraathuis.
+</p>
+
+</div>
+
+
+<div class="photo-grid">
+
+
+<div class="photo">
+<div class="photo-label">
+☕ Samen koffie drinken
+</div>
+</div>
+
+
+<div class="photo">
+<div class="photo-label">
+😊 Gezelligheid
+</div>
+</div>
+
+
+<div class="photo">
+<div class="photo-label">
+🎨 Creatief bezig
+</div>
+</div>
+
+
+<div class="photo">
+<div class="photo-label">
+👥 Samen ontmoeten
+</div>
+</div>
+
+
+<div class="photo">
+<div class="photo-label">
+❤️ Een warm welkom
+</div>
+</div>
+
+
+<div class="photo">
+<div class="photo-label">
+🎉 Samen plezier maken
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- AANMELDEN -->
+
+<section class="signup" id="aanmelden">
+
+<div class="container">
+
+<div class="signup-grid">
+
+
+<div>
+
+<h2>
+Wil je meedoen?
+</h2>
+
+<p class="signup-text">
+Vul het formulier in en laat ons weten waarvoor
+je belangstelling hebt. We nemen vervolgens
+contact met je op.
+</p>
+
+<br>
+
+<p class="signup-text">
+💜 We kijken ernaar uit je te ontmoeten!
+</p>
+
+</div>
+
+
+<!-- FORMSPREE FORMULIER -->
+
+<form
+action="https://formspree.io/f/mbgdorbq"
+method="POST"
+>
+
+
+<div class="form-row">
+
+
+<div>
+
+<label for="naam">
+Naam
+</label>
+
+<input
+type="text"
+id="naam"
+name="naam"
+placeholder="Je naam"
+required
+>
+
+</div>
+
+
+<div>
+
+<label for="email">
+E-mailadres
+</label>
+
+<input
+type="email"
+id="email"
+name="email"
+placeholder="jouw@email.nl"
+required
+>
+
+</div>
+
+
+</div>
+
+
+<label for="telefoon">
+Telefoonnummer
+</label>
+
+<input
+type="tel"
+id="telefoon"
+name="telefoon"
+placeholder="06-12345678"
+>
+
+
+<label for="activiteit">
+Waarvoor wil je je aanmelden?
+</label>
+
+<select
+id="activiteit"
+name="activiteit"
+>
+
+<option>
+Koffie & Praatje
+</option>
+
+<option>
+Creatieve activiteit
+</option>
+
+<option>
+Kinderclub
+</option>
+
+<option>
+Tieneractiviteit
+</option>
+
+<option>
+Vrouwenactiviteit
+</option>
+
+<option>
+Anders
+</option>
+
+</select>
+
+
+<label for="bericht">
+Bericht
+</label>
+
+<textarea
+id="bericht"
+name="bericht"
+placeholder="Vertel ons eventueel nog iets..."
+></textarea>
+
+
+<input
+type="hidden"
+name="_subject"
+value="Nieuwe aanmelding MiniPraathuis"
+>
+
+
+<button
+type="submit"
+class="btn primary"
+>
+Aanmelding versturen →
+</button>
+
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<div class="container">
+
+<div class="section-title">
+
+<small>Neem contact op</small>
+
+<h2>
+We horen graag van je
+</h2>
+
+<p>
+Heb je een vraag of wil je langskomen?
+Je bent van harte welkom.
+</p>
+
+</div>
+
+
+<div class="contact-grid">
+
+
+<div class="contact-card">
+
+<div class="contact-icon">
+📍
+</div>
+
+<h3>
+Locatie
+</h3>
+
+<p>
+Doelstraat 4<br>
+Dordrecht
+</p>
+
+<a
+href="https://www.google.com/maps/search/?api=1&query=Doelstraat+4+Dordrecht"
+target="_blank"
+rel="noopener"
+class="btn primary"
+>
+Route bekijken →
+</a>
+
+</div>
+
+
+<div class="contact-card">
+
+<div class="contact-icon">
+✉️
+</div>
+
+<h3>
+E-mail
+</h3>
+
+<p>
+Heb je een vraag?
+Gebruik dan het contactformulier.
+</p>
+
+<a href="#aanmelden" class="btn primary">
+Bericht sturen →
+</a>
+
+</div>
+
+
+<div class="contact-card">
+
+<div class="contact-icon">
+💬
+</div>
+
+<h3>
+Praat met ons
+</h3>
+
+<p>
+Een gesprek, een vraag of gewoon gezellig
+langskomen? Je bent welkom.
+</p>
+
+<a href="#aanmelden" class="btn primary">
+Neem contact op →
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
 
 </main>
 
 
 <!-- FOOTER -->
+
 <footer>
 
-  <div class="footer-grid">
+<div class="footer-grid">
 
-    <div>
-      <h3>MiniPraathuis 💜</h3>
-      <p>
-        Een gezellige plek voor ontmoeting,
-        gesprekken en activiteiten.
-      </p>
-    </div>
 
-    <div>
-      <h3>Navigatie</h3>
-      <a href="#home">Home</a>
-      <a href="#over-ons">Over ons</a>
-      <a href="#activiteiten">Activiteiten</a>
-      <a href="#agenda">Agenda</a>
-    </div>
+<div>
 
-    <div>
-      <h3>Meedoen</h3>
-      <a href="#aanmelden">Aanmelden</a>
-      <a href="#contact">Contact</a>
-    </div>
+<h3>
+MiniPraathuis 💜
+</h3>
 
-  </div>
+<p>
+Een gezellige plek voor ontmoeting,
+gesprekken en activiteiten in Dordrecht.
+</p>
 
-  <div class="copyright">
-    © 2026 MiniPraathuis — Alle rechten voorbehouden.
-  </div>
+</div>
+
+
+<div>
+
+<h3>
+Navigatie
+</h3>
+
+<a href="#home">
+Home
+</a>
+
+<a href="#over-ons">
+Over ons
+</a>
+
+<a href="#activiteiten">
+Activiteiten
+</a>
+
+<a href="#agenda">
+Agenda
+</a>
+
+</div>
+
+
+<div>
+
+<h3>
+Meedoen
+</h3>
+
+<a href="#aanmelden">
+Aanmelden
+</a>
+
+<a href="#contact">
+Contact
+</a>
+
+<a
+href="https://www.google.com/maps/search/?api=1&query=Doelstraat+4+Dordrecht"
+target="_blank"
+rel="noopener"
+>
+Route naar ons
+</a>
+
+</div>
+
+
+</div>
+
+
+<div class="copyright">
+
+© 2026 MiniPraathuis — Doelstraat 4, Dordrecht
+
+</div>
 
 </footer>
+
 
 </body>
 </html>
