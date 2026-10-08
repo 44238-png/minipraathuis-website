@@ -1,562 +1,649 @@
-```html
 <!DOCTYPE html>
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MiniPraathuis | Doelstraat 4</title>
+<title>MiniPraathuis | Samen beleven</title>
 
 <style>
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
+}
+
+html{
     scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#070b14;
+    --card:#111827;
+    --card2:#172033;
+    --white:#ffffff;
+    --text:#dbe4f0;
+    --muted:#8d9bb0;
+    --purple:#7857ff;
+    --blue:#00cfff;
+    --orange:#ff7a18;
+    --yellow:#ffd43b;
+    --green:#35e58b;
+    --border:rgba(255,255,255,.1);
 }
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:#f7f8fc;
-    color:#202337;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(120,87,255,.2),transparent 28%),
+        radial-gradient(circle at 85% 15%,rgba(0,207,255,.14),transparent 25%),
+        var(--bg);
+    color:var(--white);
+    line-height:1.6;
 }
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+input,
+textarea{
+    font-family:inherit;
+}
+
 
 /* =========================
    NAVIGATIE
 ========================= */
 
-header{
-    position:sticky;
+.navbar{
+    position:fixed;
     top:0;
-    z-index:999;
-    background:rgba(255,255,255,.96);
-    backdrop-filter:blur(12px);
-    box-shadow:0 3px 18px rgba(0,0,0,.08);
+    left:0;
+    right:0;
+    z-index:1000;
+    background:rgba(7,11,20,.8);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
 }
 
-nav{
+.nav{
     max-width:1200px;
+    height:75px;
     margin:auto;
-    min-height:76px;
-    padding:0 25px;
+    padding:0 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
 }
 
 .logo{
-    text-decoration:none;
-    font-size:27px;
+    font-size:25px;
     font-weight:900;
-    color:#5d35d5;
 }
 
 .logo span{
-    color:#ff7447;
+    color:var(--blue);
 }
 
-nav ul{
-    list-style:none;
+.links{
     display:flex;
-    align-items:center;
     gap:25px;
 }
 
-nav a{
-    text-decoration:none;
-    color:#25283a;
-    font-weight:700;
+.links a{
+    color:var(--muted);
+    font-weight:bold;
+    transition:.2s;
 }
 
-nav a:hover{
-    color:#5d35d5;
+.links a:hover{
+    color:white;
 }
 
-.nav-button{
-    background:#5d35d5;
-    color:white!important;
-    padding:11px 18px;
-    border-radius:30px;
+.menu{
+    display:none;
+    background:none;
+    border:0;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
 }
+
 
 /* =========================
    HERO
 ========================= */
 
 .hero{
-    min-height:650px;
+    min-height:100vh;
     display:flex;
     align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px 80px;
+    position:relative;
     overflow:hidden;
-
-    background:
-        radial-gradient(circle at 85% 15%,rgba(255,116,71,.25),transparent 28%),
-        radial-gradient(circle at 10% 80%,rgba(93,53,213,.25),transparent 35%),
-        linear-gradient(135deg,#eeeeff,#fff5ef);
 }
 
-.hero-inner{
-    width:min(1150px,92%);
-    margin:auto;
-    padding:90px 0;
+.orb{
+    position:absolute;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.2;
+    animation:float 8s infinite ease-in-out;
+}
+
+.orb1{
+    background:var(--purple);
+    left:-180px;
+    top:100px;
+}
+
+.orb2{
+    background:var(--blue);
+    right:-180px;
+    bottom:50px;
+    animation-delay:2s;
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-35px) scale(1.1);
+    }
+}
+
+.hero-content{
+    max-width:900px;
+    position:relative;
+    z-index:2;
 }
 
 .badge{
     display:inline-block;
-    background:white;
-    color:#5d35d5;
-    padding:10px 17px;
-    border-radius:30px;
-    font-weight:800;
+    padding:9px 18px;
+    border-radius:50px;
+    background:rgba(0,207,255,.08);
+    border:1px solid rgba(0,207,255,.3);
+    color:#8deaff;
+    font-weight:bold;
     margin-bottom:22px;
-    box-shadow:0 6px 25px rgba(0,0,0,.08);
 }
 
 .hero h1{
-    max-width:850px;
-    font-size:clamp(45px,7vw,82px);
-    line-height:.98;
-    letter-spacing:-4px;
+    font-size:clamp(48px,8vw,88px);
+    line-height:.95;
+    letter-spacing:-5px;
     margin-bottom:25px;
 }
 
-.hero h1 span{
-    color:#5d35d5;
+.gradient{
+    background:linear-gradient(90deg,#fff,#78eaff,#8975ff);
+    -webkit-background-clip:text;
+    color:transparent;
 }
 
 .hero p{
-    max-width:680px;
-    color:#626a7d;
+    max-width:700px;
+    margin:auto;
+    color:var(--muted);
     font-size:20px;
     margin-bottom:35px;
 }
 
 .buttons{
     display:flex;
+    justify-content:center;
     gap:15px;
     flex-wrap:wrap;
 }
 
 .btn{
     display:inline-block;
-    border:none;
-    text-decoration:none;
+    border:0;
+    border-radius:15px;
+    padding:15px 24px;
+    font-weight:900;
     cursor:pointer;
-    font-size:16px;
-    font-weight:800;
-    padding:15px 23px;
-    border-radius:13px;
     transition:.2s;
 }
 
-.primary{
-    background:#5d35d5;
-    color:white;
-    box-shadow:0 10px 25px rgba(93,53,213,.25);
+.btn:hover{
+    transform:translateY(-3px);
 }
 
-.primary:hover{
-    background:#4724b6;
-    transform:translateY(-2px);
+.primary{
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    color:white;
 }
 
 .secondary{
-    background:white;
-    color:#25283a;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--border);
 }
 
-.secondary:hover{
-    transform:translateY(-2px);
-}
 
 /* =========================
-   ALGEMEEN
+   STATS
+========================= */
+
+.stats{
+    max-width:1000px;
+    margin:-35px auto 0;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    position:relative;
+    z-index:5;
+}
+
+.stat{
+    text-align:center;
+    padding:25px;
+    background:rgba(17,24,39,.9);
+    border:1px solid var(--border);
+    border-radius:20px;
+    backdrop-filter:blur(15px);
+}
+
+.stat strong{
+    display:block;
+    font-size:31px;
+    color:#8deaff;
+}
+
+.stat span{
+    color:var(--muted);
+}
+
+
+/* =========================
+   SECTIES
 ========================= */
 
 section{
-    padding:90px 20px;
-}
-
-.container{
-    max-width:1150px;
+    max-width:1200px;
     margin:auto;
+    padding:100px 20px;
 }
 
 .section-title{
     text-align:center;
-    margin-bottom:50px;
+    margin-bottom:45px;
 }
 
-.section-title small{
-    color:#ff7447;
+.small{
+    color:#7feaff;
     text-transform:uppercase;
     font-weight:900;
     letter-spacing:2px;
 }
 
 .section-title h2{
-    font-size:clamp(32px,5vw,52px);
-    margin:8px 0 12px;
+    font-size:45px;
+    margin:5px 0;
 }
 
 .section-title p{
-    max-width:650px;
-    margin:auto;
-    color:#6b7385;
+    color:var(--muted);
 }
+
 
 /* =========================
-   OVER ONS
+   KAARTEN
 ========================= */
 
-.about{
-    background:white;
-}
-
-.about-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:50px;
-    align-items:center;
-}
-
-.about-card{
-    min-height:360px;
-    padding:45px;
-    border-radius:28px;
-    color:white;
-
-    background:
-        linear-gradient(135deg,#5d35d5,#7b59e8);
-
-    box-shadow:0 20px 45px rgba(93,53,213,.2);
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
-.about-card .emoji{
-    font-size:70px;
-    margin-bottom:15px;
-}
-
-.about-card h3{
-    font-size:32px;
-    margin-bottom:12px;
-}
-
-.about-text h3{
-    font-size:32px;
-    margin-bottom:15px;
-}
-
-.about-text p{
-    color:#687184;
-    margin-bottom:18px;
-}
-
-/* =========================
-   ACTIVITEITEN
-========================= */
-
-.activities{
-    background:#f7f8fc;
-}
-
-.activity-grid{
+.grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:22px;
 }
 
-.activity{
-    background:white;
+.card{
+    background:linear-gradient(145deg,var(--card),var(--card2));
+    border:1px solid var(--border);
+    border-radius:25px;
     padding:30px;
-    border-radius:22px;
-    box-shadow:0 8px 30px rgba(25,30,50,.07);
     transition:.25s;
 }
 
-.activity:hover{
-    transform:translateY(-6px);
-    box-shadow:0 16px 35px rgba(25,30,50,.12);
+.card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(0,207,255,.35);
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
-.activity-icon{
+.icon{
     width:60px;
     height:60px;
     display:grid;
     place-items:center;
-    border-radius:17px;
-    background:#eeeaff;
-    font-size:29px;
+    border-radius:18px;
+    background:rgba(120,87,255,.14);
+    font-size:30px;
     margin-bottom:20px;
 }
 
-.activity h3{
-    font-size:21px;
-    margin-bottom:9px;
+.card h3{
+    font-size:22px;
+    margin-bottom:8px;
 }
 
-.activity p{
-    color:#687184;
+.card p{
+    color:var(--muted);
 }
+
+
+/* =========================
+   HALLOWEEN
+========================= */
+
+.halloween{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 80% 30%,rgba(255,122,24,.18),transparent 30%),
+        linear-gradient(145deg,#160c20,#25100b);
+    border:1px solid rgba(255,122,24,.3);
+    border-radius:30px;
+    padding:45px;
+}
+
+.halloween-content{
+    position:relative;
+    z-index:2;
+}
+
+.halloween-tag{
+    display:inline-block;
+    background:rgba(255,122,24,.15);
+    border:1px solid rgba(255,122,24,.4);
+    color:#ffad73;
+    padding:7px 14px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.halloween h2{
+    font-size:48px;
+    margin:10px 0;
+}
+
+.halloween p{
+    color:#d3bfba;
+    max-width:650px;
+}
+
+.halloween-info{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.halloween-box{
+    padding:15px 20px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:15px;
+}
+
+.halloween-box strong{
+    display:block;
+    color:white;
+}
+
+.halloween-box span{
+    color:#c5b7b3;
+}
+
 
 /* =========================
    AGENDA
 ========================= */
 
 .agenda{
-    background:#efedff;
+    display:grid;
+    gap:15px;
 }
 
-.agenda-list{
-    max-width:850px;
-    margin:auto;
-    display:grid;
-    gap:17px;
-}
-
-.agenda-item{
-    background:white;
-    border-radius:18px;
-    padding:20px;
-    display:grid;
-    grid-template-columns:80px 1fr auto;
+.event{
+    display:flex;
     align-items:center;
     gap:20px;
-    box-shadow:0 7px 25px rgba(0,0,0,.06);
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:20px;
 }
 
 .date{
+    min-width:75px;
     text-align:center;
-    background:#5d35d5;
-    color:white;
-    border-radius:13px;
     padding:10px;
+    border-radius:15px;
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    font-weight:bold;
 }
 
-.date strong{
+.date b{
     display:block;
-    font-size:26px;
+    font-size:27px;
 }
 
-.date span{
-    font-size:11px;
-    text-transform:uppercase;
+.event-info{
+    flex:1;
 }
 
-.agenda-item p{
-    color:#70798b;
+.event-info h3{
+    margin-bottom:3px;
 }
+
+.event-info p{
+    color:var(--muted);
+}
+
+.event-icon{
+    font-size:28px;
+}
+
 
 /* =========================
-   FOTO'S
+   REVIEWS
 ========================= */
 
-.photos{
-    background:white;
-}
-
-.photo-grid{
+.review-layout{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+    grid-template-columns:380px 1fr;
+    gap:25px;
 }
 
-.photo{
-    height:230px;
-    border-radius:22px;
-    padding:20px;
-    display:flex;
-    align-items:end;
-    overflow:hidden;
-
-    background:
-        linear-gradient(135deg,#ddd9ff,#ffe1d4);
+.review-box,
+.reviews{
+    background:linear-gradient(145deg,var(--card),var(--card2));
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:30px;
 }
 
-.photo:nth-child(2){
-    background:linear-gradient(135deg,#ffd8c7,#fff0cf);
-}
-
-.photo:nth-child(3){
-    background:linear-gradient(135deg,#d8e7ff,#e8dcff);
-}
-
-.photo:nth-child(4){
-    background:linear-gradient(135deg,#d8f3df,#e8e0ff);
-}
-
-.photo:nth-child(5){
-    background:linear-gradient(135deg,#ffe0ef,#ffe7c9);
-}
-
-.photo:nth-child(6){
-    background:linear-gradient(135deg,#d8f1ff,#e5ddff);
-}
-
-.photo-label{
-    width:100%;
-    padding:11px 14px;
-    background:rgba(255,255,255,.9);
-    border-radius:12px;
-    font-weight:800;
-}
-
-/* =========================
-   AANMELDEN
-========================= */
-
-.signup{
-    background:linear-gradient(135deg,#5d35d5,#3f209f);
-    color:white;
-}
-
-.signup-grid{
-    display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    gap:50px;
-    align-items:start;
-}
-
-.signup h2{
-    font-size:50px;
-    line-height:1;
+.review-box h3,
+.reviews h3{
+    font-size:25px;
     margin-bottom:20px;
-}
-
-.signup-text{
-    color:#e2ddff;
-    font-size:17px;
-}
-
-form{
-    background:white;
-    color:#202337;
-    padding:32px;
-    border-radius:24px;
-    box-shadow:0 20px 45px rgba(0,0,0,.18);
-}
-
-.form-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
 }
 
 label{
     display:block;
-    font-weight:800;
-    margin-bottom:7px;
+    margin:15px 0 7px;
+    font-weight:bold;
 }
 
 input,
-textarea,
-select{
+textarea{
     width:100%;
-    border:2px solid #e5e8ef;
-    border-radius:11px;
-    padding:13px;
-    font:inherit;
-    margin-bottom:18px;
+    padding:14px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:#080d18;
+    color:white;
     outline:none;
 }
 
-input:focus,
-textarea:focus,
-select:focus{
-    border-color:#5d35d5;
-}
-
 textarea{
-    min-height:120px;
+    min-height:130px;
     resize:vertical;
 }
 
-form .btn{
-    width:100%;
+input:focus,
+textarea:focus{
+    border-color:var(--blue);
 }
+
+.stars{
+    display:flex;
+    gap:3px;
+}
+
+.stars button{
+    border:0;
+    background:none;
+    color:#596273;
+    font-size:32px;
+    cursor:pointer;
+}
+
+.stars button.active{
+    color:var(--yellow);
+}
+
+.review{
+    padding:20px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.review:last-child{
+    border-bottom:0;
+}
+
+.review-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.review-name{
+    font-weight:900;
+}
+
+.review-date{
+    color:#68758a;
+    font-size:13px;
+}
+
+.review-stars{
+    color:var(--yellow);
+    letter-spacing:2px;
+    margin:5px 0;
+}
+
+.review-text{
+    color:#c3ccda;
+    word-break:break-word;
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+}
+
 
 /* =========================
    CONTACT
 ========================= */
 
-.contact{
-    background:white;
-}
-
 .contact-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
 }
 
 .contact-card{
-    text-align:center;
-    padding:32px;
-    border-radius:22px;
-    background:#f7f8fc;
-}
-
-.contact-icon{
-    font-size:40px;
-    margin-bottom:10px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:30px;
 }
 
 .contact-card h3{
-    margin-bottom:8px;
+    font-size:27px;
+    margin-bottom:10px;
 }
 
-.contact-card p{
-    color:#6b7385;
-    margin-bottom:17px;
+.contact-card>p{
+    color:var(--muted);
 }
+
+.contact-info{
+    display:grid;
+    gap:13px;
+    margin-top:25px;
+}
+
+.info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:15px;
+    background:rgba(255,255,255,.04);
+    border-radius:15px;
+}
+
 
 /* =========================
    FOOTER
 ========================= */
 
 footer{
-    background:#171a27;
+    text-align:center;
+    padding:45px 20px;
+    border-top:1px solid var(--border);
+    color:var(--muted);
+}
+
+footer strong{
     color:white;
-    padding:55px 20px 25px;
 }
 
-.footer-grid{
-    max-width:1150px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr;
-    gap:40px;
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:2000;
+    padding:16px 20px;
+    border-radius:15px;
+    background:#111827;
+    border:1px solid var(--border);
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+    transform:translateY(120px);
+    opacity:0;
+    transition:.3s;
 }
 
-footer h3{
-    margin-bottom:12px;
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
 }
 
-footer p,
-footer a{
-    color:#aeb4c3;
-}
-
-footer a{
-    display:block;
-    text-decoration:none;
-    margin-bottom:7px;
-}
-
-.copyright{
-    max-width:1150px;
-    margin:40px auto 0;
-    padding-top:20px;
-    border-top:1px solid #303444;
-    color:#8d94a4;
-    font-size:14px;
-}
 
 /* =========================
    MOBIEL
@@ -564,897 +651,1195 @@ footer a{
 
 @media(max-width:850px){
 
-    nav ul{
+    .links{
         display:none;
+        position:absolute;
+        top:75px;
+        left:0;
+        right:0;
+        background:#080d18;
+        padding:20px;
+        flex-direction:column;
+        text-align:center;
+        border-bottom:1px solid var(--border);
     }
 
-    .about-grid,
-    .signup-grid{
+    .links.open{
+        display:flex;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid{
         grid-template-columns:1fr;
     }
 
-    .activity-grid,
-    .photo-grid,
+    .review-layout,
     .contact-grid{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:1fr;
     }
 
-    .footer-grid{
-        grid-template-columns:1fr;
+    .halloween h2{
+        font-size:38px;
     }
 }
 
-@media(max-width:600px){
+@media(max-width:500px){
 
-    section{
-        padding:65px 16px;
+    .stats{
+        grid-template-columns:1fr;
     }
 
-    .hero-inner{
-        padding:65px 0;
+    .section-title h2{
+        font-size:35px;
+    }
+
+    .event{
+        align-items:flex-start;
+    }
+
+    .halloween{
+        padding:30px 22px;
     }
 
     .hero h1{
-        letter-spacing:-2px;
+        letter-spacing:-3px;
     }
-
-    .activity-grid,
-    .photo-grid,
-    .contact-grid{
-        grid-template-columns:1fr;
-    }
-
-    .agenda-item{
-        grid-template-columns:70px 1fr;
-    }
-
-    .agenda-item .btn{
-        grid-column:1/-1;
-    }
-
-    .form-row{
-        grid-template-columns:1fr;
-        gap:0;
-    }
-
-    .about-card{
-        padding:30px;
-    }
-
 }
-
 </style>
 </head>
+
 
 <body>
 
 
-<!-- NAVIGATIE -->
+<!-- =========================
+     NAVIGATIE
+========================= -->
 
-<header>
+<nav class="navbar">
 
-<nav>
+    <div class="nav">
 
-<a href="#home" class="logo">
-Mini<span>Praathuis</span>
-</a>
+        <a href="#home" class="logo">
+            Mini<span>Praathuis</span>
+        </a>
 
-<ul>
+        <div class="links" id="links">
+            <a href="#home">Home</a>
+            <a href="#activiteiten">Activiteiten</a>
+            <a href="#agenda">Agenda</a>
+            <a href="#reviews">Recensies</a>
+            <a href="#contact">Contact</a>
+        </div>
 
-<li><a href="#over-ons">Over ons</a></li>
+        <button class="menu" onclick="menuOpen()">
+            ☰
+        </button>
 
-<li><a href="#activiteiten">Activiteiten</a></li>
-
-<li><a href="#agenda">Agenda</a></li>
-
-<li><a href="#fotos">Foto's</a></li>
-
-<li><a href="#contact">Contact</a></li>
-
-<li>
-<a href="#aanmelden" class="nav-button">
-Aanmelden
-</a>
-</li>
-
-</ul>
+    </div>
 
 </nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero" id="home">
+
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="hero-content">
+
+        <div class="badge">
+            ✨ Welkom bij MiniPraathuis
+        </div>
+
+        <h1>
+            Samen praten.<br>
+            <span class="gradient">
+                Samen beleven.
+            </span>
+        </h1>
+
+        <p>
+            Een gezellige plek voor leuke activiteiten,
+            evenementen, gesprekken en vooral heel veel plezier.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#activiteiten"
+               class="btn primary">
+                🚀 Ontdek MiniPraathuis
+            </a>
+
+            <a href="#agenda"
+               class="btn secondary">
+                📅 Bekijk agenda
+            </a>
+
+        </div>
+
+    </div>
 
 </header>
 
 
-<main>
+<!-- =========================
+     STATS
+========================= -->
 
+<div class="stats">
 
-<!-- HERO -->
+    <div class="stat">
+        <strong>25+</strong>
+        <span>Activiteiten</span>
+    </div>
 
-<section class="hero" id="home">
+    <div class="stat">
+        <strong>100+</strong>
+        <span>Bezoekers</span>
+    </div>
 
-<div class="hero-inner">
+    <div class="stat">
+        <strong>15+</strong>
+        <span>Evenementen</span>
+    </div>
 
-<div class="badge">
-💜 Welkom bij het MiniPraathuis
-</div>
-
-<h1>
-Een plek om te
-<span>praten, lachen</span>
-en samen te zijn.
-</h1>
-
-<p>
-Het MiniPraathuis is een gezellige plek waar mensen
-elkaar kunnen ontmoeten, praten, lachen en samen
-activiteiten kunnen doen.
-</p>
-
-<div class="buttons">
-
-<a href="#aanmelden" class="btn primary">
-Aanmelden →
-</a>
-
-<a href="#activiteiten" class="btn secondary">
-Bekijk activiteiten
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- OVER ONS -->
-
-<section class="about" id="over-ons">
-
-<div class="container">
-
-<div class="section-title">
-
-<small>Wie zijn wij?</small>
-
-<h2>
-Welkom bij het MiniPraathuis
-</h2>
-
-<p>
-Een warme plek voor ontmoeting, gezelligheid
-en een goed gesprek.
-</p>
+    <div class="stat">
+        <strong>⭐ 4.9</strong>
+        <span>Beoordeling</span>
+    </div>
 
 </div>
 
 
-<div class="about-grid">
+<!-- =========================
+     OVER ONS
+========================= -->
+
+<section>
+
+    <div class="section-title">
+
+        <div class="small">
+            Over ons
+        </div>
+
+        <h2>
+            Waarom MiniPraathuis?
+        </h2>
+
+        <p>
+            Een plek waar gezelligheid centraal staat.
+        </p>
+
+    </div>
 
 
-<div class="about-card">
+    <div class="grid">
 
-<div class="emoji">
-💬
-</div>
+        <div class="card">
 
-<h3>
-Iedereen is welkom
-</h3>
+            <div class="icon">
+                🤝
+            </div>
 
-<p>
-Kom langs voor een gesprek, een activiteit,
-een kop koffie of gewoon voor de gezelligheid.
-</p>
+            <h3>
+                Samen
+            </h3>
 
-</div>
+            <p>
+                Ontmoet anderen en doe gezellig mee
+                met verschillende activiteiten.
+            </p>
+
+        </div>
 
 
-<div class="about-text">
+        <div class="card">
 
-<h3>
-Samen maken we de buurt gezelliger.
-</h3>
+            <div class="icon">
+                🎉
+            </div>
 
-<p>
-Bij het MiniPraathuis staat ontmoeting centraal.
-We willen een plek creëren waar mensen zich
-welkom voelen en waar iedereen zichzelf kan zijn.
-</p>
+            <h3>
+                Plezier
+            </h3>
 
-<p>
-Of je nu alleen komt of samen met iemand:
-er is altijd ruimte voor een praatje.
-</p>
+            <p>
+                Van creatieve middagen tot speciale
+                evenementen.
+            </p>
 
-<a href="#aanmelden" class="btn primary">
-Kom gezellig langs
-</a>
+        </div>
 
-</div>
 
-</div>
+        <div class="card">
 
-</div>
+            <div class="icon">
+                💬
+            </div>
+
+            <h3>
+                Praat mee
+            </h3>
+
+            <p>
+                Heb je een idee? Laat het ons weten
+                en denk mee met MiniPraathuis.
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ACTIVITEITEN -->
+<!-- =========================
+     ACTIVITEITEN
+========================= -->
 
-<section class="activities" id="activiteiten">
+<section id="activiteiten">
 
-<div class="container">
+    <div class="section-title">
 
-<div class="section-title">
+        <div class="small">
+            Doe mee
+        </div>
 
-<small>Doe gezellig mee</small>
+        <h2>
+            Activiteiten
+        </h2>
 
-<h2>
-Onze activiteiten
-</h2>
+        <p>
+            Er is altijd iets leuks te beleven.
+        </p>
 
-<p>
-Er is regelmatig iets leuks te doen bij het MiniPraathuis.
-</p>
-
-</div>
-
-
-<div class="activity-grid">
-
-
-<div class="activity">
-
-<div class="activity-icon">
-☕
-</div>
-
-<h3>
-Koffie & Praatje
-</h3>
-
-<p>
-Even binnenlopen, koffie drinken en gezellig
-met anderen praten.
-</p>
-
-</div>
+    </div>
 
 
-<div class="activity">
+    <div class="grid">
 
-<div class="activity-icon">
-🎨
-</div>
+        <div class="card">
 
-<h3>
-Creatieve activiteiten
-</h3>
+            <div class="icon">🎨</div>
 
-<p>
-Samen creatieve dingen maken en plezier hebben.
-</p>
+            <h3>
+                Creatieve middag
+            </h3>
 
-</div>
+            <p>
+                Tekenen, knutselen en allerlei
+                creatieve projecten.
+            </p>
 
-
-<div class="activity">
-
-<div class="activity-icon">
-👩
-</div>
-
-<h3>
-Vrouwenactiviteiten
-</h3>
-
-<p>
-Gezellige activiteiten en ontmoetingen voor vrouwen.
-</p>
-
-</div>
+        </div>
 
 
-<div class="activity">
+        <div class="card">
 
-<div class="activity-icon">
-🧒
-</div>
+            <div class="icon">⚽</div>
 
-<h3>
-Kinderclub
-</h3>
+            <h3>
+                Sport & spel
+            </h3>
 
-<p>
-Leuke activiteiten en gezellige momenten voor kinderen.
-</p>
+            <p>
+                Lekker actief bezig zijn met
+                leuke spellen en uitdagingen.
+            </p>
 
-</div>
-
-
-<div class="activity">
-
-<div class="activity-icon">
-🎮
-</div>
-
-<h3>
-Tieneractiviteiten
-</h3>
-
-<p>
-Samenkomen, plezier maken en nieuwe mensen ontmoeten.
-</p>
-
-</div>
+        </div>
 
 
-<div class="activity">
+        <div class="card">
 
-<div class="activity-icon">
-❤️
-</div>
+            <div class="icon">🎲</div>
 
-<h3>
-Ontmoeten
-</h3>
+            <h3>
+                Spelletjes
+            </h3>
 
-<p>
-Een goed gesprek kan soms precies zijn wat je nodig hebt.
-</p>
+            <p>
+                Bordspellen, kaartspellen en
+                gezellige spellen.
+            </p>
 
-</div>
+        </div>
 
 
-</div>
+        <div class="card">
 
-</div>
+            <div class="icon">🎤</div>
+
+            <h3>
+                Praatmiddag
+            </h3>
+
+            <p>
+                Samen praten, ideeën delen en
+                gezellig met elkaar bezig zijn.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🎬</div>
+
+            <h3>
+                Filmavond
+            </h3>
+
+            <p>
+                Een gezellige avond met een
+                leuke film en snacks.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">✨</div>
+
+            <h3>
+                Speciale evenementen
+            </h3>
+
+            <p>
+                Houd de agenda in de gaten voor
+                speciale MiniPraathuis-events.
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- AGENDA -->
+<!-- =========================
+     HALLOWEEN
+========================= -->
 
-<section class="agenda" id="agenda">
+<section>
 
-<div class="container">
+    <div class="halloween">
 
-<div class="section-title">
+        <div class="halloween-content">
 
-<small>Wat staat er op de planning?</small>
+            <span class="halloween-tag">
+                🎃 SPECIAAL EVENEMENT
+            </span>
 
-<h2>
-Agenda
-</h2>
+            <h2>
+                Halloween bij MiniPraathuis 👻
+            </h2>
 
-<p>
-Hier komen de activiteiten en bijeenkomsten van het
-MiniPraathuis te staan.
-</p>
-
-</div>
-
-
-<div class="agenda-list">
-
-
-<div class="agenda-item">
-
-<div class="date">
-
-<strong>01</strong>
-
-<span>Dag</span>
-
-</div>
-
-<div>
-
-<h3>
-Koffie & Praatje
-</h3>
-
-<p>
-Gezellig samenkomen en elkaar ontmoeten.
-</p>
-
-</div>
-
-<a href="#aanmelden" class="btn primary">
-Meedoen
-</a>
-
-</div>
+            <p>
+                Op 30 oktober vieren we Halloween!
+                Kom gezellig langs en beleef een
+                speciale Halloweenavond bij MiniPraathuis.
+            </p>
 
 
-<div class="agenda-item">
+            <div class="halloween-info">
 
-<div class="date">
+                <div class="halloween-box">
 
-<strong>08</strong>
+                    <strong>
+                        📅 Datum
+                    </strong>
 
-<span>Dag</span>
+                    <span>
+                        30 oktober
+                    </span>
 
-</div>
-
-<div>
-
-<h3>
-Creatieve middag
-</h3>
-
-<p>
-Een gezellige middag vol creativiteit.
-</p>
-
-</div>
-
-<a href="#aanmelden" class="btn primary">
-Meedoen
-</a>
-
-</div>
+                </div>
 
 
-<div class="agenda-item">
+                <div class="halloween-box">
 
-<div class="date">
+                    <strong>
+                        🕡 Start
+                    </strong>
 
-<strong>15</strong>
+                    <span>
+                        18:30 uur
+                    </span>
 
-<span>Dag</span>
-
-</div>
-
-<div>
-
-<h3>
-Ontmoetingsmiddag
-</h3>
-
-<p>
-Nieuwe mensen ontmoeten en gezellig bijpraten.
-</p>
-
-</div>
-
-<a href="#aanmelden" class="btn primary">
-Meedoen
-</a>
-
-</div>
+                </div>
 
 
-</div>
+                <div class="halloween-box">
 
-</div>
+                    <strong>
+                        💶 Kosten
+                    </strong>
+
+                    <span>
+                        €2,50 per persoon
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- FOTO'S -->
+<!-- =========================
+     AGENDA
+========================= -->
 
-<section class="photos" id="fotos">
+<section id="agenda">
 
-<div class="container">
+    <div class="section-title">
 
-<div class="section-title">
+        <div class="small">
+            Planning
+        </div>
 
-<small>Sfeer</small>
+        <h2>
+            Agenda
+        </h2>
 
-<h2>
-Foto's
-</h2>
+        <p>
+            Dit staat er momenteel gepland.
+        </p>
 
-<p>
-Een kleine impressie van de sfeer bij het MiniPraathuis.
-</p>
-
-</div>
-
-
-<div class="photo-grid">
-
-
-<div class="photo">
-<div class="photo-label">
-☕ Samen koffie drinken
-</div>
-</div>
+    </div>
 
 
-<div class="photo">
-<div class="photo-label">
-😊 Gezelligheid
-</div>
-</div>
+    <div class="agenda">
 
 
-<div class="photo">
-<div class="photo-label">
-🎨 Creatief bezig
-</div>
-</div>
+        <div class="event">
+
+            <div class="date">
+
+                <b>19</b>
+
+                OKT
+
+            </div>
 
 
-<div class="photo">
-<div class="photo-label">
-👥 Samen ontmoeten
-</div>
-</div>
+            <div class="event-info">
+
+                <h3>
+                    🎨 Creatieve middag
+                </h3>
+
+                <p>
+                    14:00 – 16:00 · MiniPraathuis
+                </p>
+
+            </div>
 
 
-<div class="photo">
-<div class="photo-label">
-❤️ Een warm welkom
-</div>
-</div>
+            <div class="event-icon">
+                🎨
+            </div>
+
+        </div>
 
 
-<div class="photo">
-<div class="photo-label">
-🎉 Samen plezier maken
-</div>
-</div>
+        <div class="event">
+
+            <div class="date">
+
+                <b>30</b>
+
+                OKT
+
+            </div>
 
 
-</div>
+            <div class="event-info">
 
-</div>
+                <h3>
+                    🎃 Halloween bij MiniPraathuis
+                </h3>
+
+                <p>
+                    18:30 uur · €2,50 per persoon
+                </p>
+
+            </div>
+
+
+            <div class="event-icon">
+                👻
+            </div>
+
+        </div>
+
+
+    </div>
 
 </section>
 
 
-<!-- AANMELDEN -->
+<!-- =========================
+     RECENSIES
+========================= -->
 
-<section class="signup" id="aanmelden">
+<section id="reviews">
 
-<div class="container">
+    <div class="section-title">
 
-<div class="signup-grid">
+        <div class="small">
+            Jouw mening
+        </div>
 
+        <h2>
+            Recensies
+        </h2>
 
-<div>
+        <p>
+            Laat weten wat jij van MiniPraathuis vindt.
+        </p>
 
-<h2>
-Wil je meedoen?
-</h2>
-
-<p class="signup-text">
-Vul het formulier in en laat ons weten waarvoor
-je belangstelling hebt. We nemen vervolgens
-contact met je op.
-</p>
-
-<br>
-
-<p class="signup-text">
-💜 We kijken ernaar uit je te ontmoeten!
-</p>
-
-</div>
+    </div>
 
 
-<!-- FORMSPREE FORMULIER -->
-
-<form
-action="https://formspree.io/f/mbgdorbq"
-method="POST"
->
+    <div class="review-layout">
 
 
-<div class="form-row">
+        <!-- RECENSIE FORMULIER -->
+
+        <div class="review-box">
+
+            <h3>
+                ⭐ Plaats een recensie
+            </h3>
 
 
-<div>
-
-<label for="naam">
-Naam
-</label>
-
-<input
-type="text"
-id="naam"
-name="naam"
-placeholder="Je naam"
-required
->
-
-</div>
+            <form id="reviewForm">
 
 
-<div>
+                <label>
+                    Naam
+                </label>
 
-<label for="email">
-E-mailadres
-</label>
-
-<input
-type="email"
-id="email"
-name="email"
-placeholder="jouw@email.nl"
-required
->
-
-</div>
+                <input
+                    id="reviewName"
+                    type="text"
+                    maxlength="30"
+                    placeholder="Je voornaam of bijnaam"
+                    required
+                >
 
 
-</div>
+                <label>
+                    Beoordeling
+                </label>
+
+                <div class="stars">
+
+                    <button
+                        type="button"
+                        data-rating="1">
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="2">
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="3">
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="4">
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="5">
+                        ★
+                    </button>
+
+                </div>
 
 
-<label for="telefoon">
-Telefoonnummer
-</label>
+                <label>
+                    Jouw reactie
+                </label>
 
-<input
-type="tel"
-id="telefoon"
-name="telefoon"
-placeholder="06-12345678"
->
-
-
-<label for="activiteit">
-Waarvoor wil je je aanmelden?
-</label>
-
-<select
-id="activiteit"
-name="activiteit"
->
-
-<option>
-Koffie & Praatje
-</option>
-
-<option>
-Creatieve activiteit
-</option>
-
-<option>
-Kinderclub
-</option>
-
-<option>
-Tieneractiviteit
-</option>
-
-<option>
-Vrouwenactiviteit
-</option>
-
-<option>
-Anders
-</option>
-
-</select>
+                <textarea
+                    id="reviewText"
+                    maxlength="500"
+                    placeholder="Wat vind je van MiniPraathuis?"
+                    required
+                ></textarea>
 
 
-<label for="bericht">
-Bericht
-</label>
-
-<textarea
-id="bericht"
-name="bericht"
-placeholder="Vertel ons eventueel nog iets..."
-></textarea>
+                <br><br>
 
 
-<input
-type="hidden"
-name="_subject"
-value="Nieuwe aanmelding MiniPraathuis"
->
+                <button
+                    class="btn primary"
+                    type="submit">
+
+                    ⭐ Recensie plaatsen
+
+                </button>
+
+            </form>
+
+        </div>
 
 
-<button
-type="submit"
-class="btn primary"
->
-Aanmelding versturen →
-</button>
+        <!-- RECENSIES LIJST -->
 
+        <div class="reviews">
 
-</form>
+            <h3>
+                💬 Bezoekers zeggen
+            </h3>
 
-</div>
+            <div id="reviewsList"></div>
 
-</div>
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- CONTACT -->
+<!-- =========================
+     CONTACT
+========================= -->
 
-<section class="contact" id="contact">
+<section id="contact">
 
-<div class="container">
+    <div class="section-title">
 
-<div class="section-title">
+        <div class="small">
+            Contact
+        </div>
 
-<small>Neem contact op</small>
+        <h2>
+            Neem contact op
+        </h2>
 
-<h2>
-We horen graag van je
-</h2>
+        <p>
+            Heb je een vraag, idee of bericht?
+        </p>
 
-<p>
-Heb je een vraag of wil je langskomen?
-Je bent van harte welkom.
-</p>
-
-</div>
-
-
-<div class="contact-grid">
+    </div>
 
 
-<div class="contact-card">
-
-<div class="contact-icon">
-📍
-</div>
-
-<h3>
-Locatie
-</h3>
-
-<p>
-Doelstraat 4<br>
-Dordrecht
-</p>
-
-<a
-href="https://www.google.com/maps/search/?api=1&query=Doelstraat+4+Dordrecht"
-target="_blank"
-rel="noopener"
-class="btn primary"
->
-Route bekijken →
-</a>
-
-</div>
+    <div class="contact-grid">
 
 
-<div class="contact-card">
+        <div class="contact-card">
 
-<div class="contact-icon">
-✉️
-</div>
+            <h3>
+                📍 MiniPraathuis
+            </h3>
 
-<h3>
-E-mail
-</h3>
-
-<p>
-Heb je een vraag?
-Gebruik dan het contactformulier.
-</p>
-
-<a href="#aanmelden" class="btn primary">
-Bericht sturen →
-</a>
-
-</div>
+            <p>
+                Kom gezellig langs of laat ons
+                weten wat je van MiniPraathuis vindt.
+            </p>
 
 
-<div class="contact-card">
-
-<div class="contact-icon">
-💬
-</div>
-
-<h3>
-Praat met ons
-</h3>
-
-<p>
-Een gesprek, een vraag of gewoon gezellig
-langskomen? Je bent welkom.
-</p>
-
-<a href="#aanmelden" class="btn primary">
-Neem contact op →
-</a>
-
-</div>
+            <div class="contact-info">
 
 
-</div>
+                <div class="info">
 
-</div>
+                    <span>📍</span>
+
+                    <div>
+
+                        <strong>
+                            Adres
+                        </strong>
+
+                        <br>
+
+                        Doelstraat 4
+
+                    </div>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span>💬</span>
+
+                    <div>
+
+                        <strong>
+                            Meepraten
+                        </strong>
+
+                        <br>
+
+                        Deel je ideeën
+
+                    </div>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span>⭐</span>
+
+                    <div>
+
+                        <strong>
+                            Recensie
+                        </strong>
+
+                        <br>
+
+                        Laat jouw mening achter
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <h3>
+                ✉️ Bericht sturen
+            </h3>
+
+
+            <form
+                action="https://formspree.io/f/mbgdorbq"
+                method="POST"
+            >
+
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="Nieuw bericht via MiniPraathuis"
+                >
+
+
+                <label>
+                    Naam
+                </label>
+
+                <input
+                    type="text"
+                    name="naam"
+                    placeholder="Je naam"
+                    required
+                >
+
+
+                <label>
+                    Bericht
+                </label>
+
+                <textarea
+                    name="bericht"
+                    placeholder="Typ je bericht..."
+                    required
+                ></textarea>
+
+
+                <br><br>
+
+
+                <button
+                    type="submit"
+                    class="btn primary">
+
+                    Versturen 🚀
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-</main>
-
-
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
-<div class="footer-grid">
+    <p>
+        <strong>MiniPraathuis</strong>
+        · Samen praten, beleven & plezier maken ❤️
+    </p>
 
-
-<div>
-
-<h3>
-MiniPraathuis 💜
-</h3>
-
-<p>
-Een gezellige plek voor ontmoeting,
-gesprekken en activiteiten in Dordrecht.
-</p>
-
-</div>
-
-
-<div>
-
-<h3>
-Navigatie
-</h3>
-
-<a href="#home">
-Home
-</a>
-
-<a href="#over-ons">
-Over ons
-</a>
-
-<a href="#activiteiten">
-Activiteiten
-</a>
-
-<a href="#agenda">
-Agenda
-</a>
-
-</div>
-
-
-<div>
-
-<h3>
-Meedoen
-</h3>
-
-<a href="#aanmelden">
-Aanmelden
-</a>
-
-<a href="#contact">
-Contact
-</a>
-
-<a
-href="https://www.google.com/maps/search/?api=1&query=Doelstraat+4+Dordrecht"
-target="_blank"
-rel="noopener"
->
-Route naar ons
-</a>
-
-</div>
-
-
-</div>
-
-
-<div class="copyright">
-
-© 2026 MiniPraathuis — Doelstraat 4, Dordrecht
-
-</div>
+    <p>
+        © 2026 MiniPraathuis
+    </p>
 
 </footer>
 
 
+<div class="toast" id="toast">
+    ⭐ Recensie geplaatst!
+</div>
+
+
+<script>
+
+/* =========================
+   MENU
+========================= */
+
+function menuOpen(){
+
+    document
+        .getElementById("links")
+        .classList.toggle("open");
+
+}
+
+
+/* =========================
+   RECENSIES
+========================= */
+
+let rating = 0;
+
+const stars =
+    document.querySelectorAll(
+        ".stars button"
+    );
+
+const form =
+    document.getElementById(
+        "reviewForm"
+    );
+
+const list =
+    document.getElementById(
+        "reviewsList"
+    );
+
+
+/* Sterren */
+
+stars.forEach(star => {
+
+    star.addEventListener(
+        "click",
+        function(){
+
+            rating =
+                Number(
+                    this.dataset.rating
+                );
+
+
+            stars.forEach(item => {
+
+                item.classList.toggle(
+                    "active",
+                    Number(
+                        item.dataset.rating
+                    ) <= rating
+                );
+
+            });
+
+        }
+    );
+
+});
+
+
+/* HTML veilig maken */
+
+function safe(text){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* Datum */
+
+function dateText(date){
+
+    return new Date(date)
+        .toLocaleDateString(
+            "nl-NL",
+            {
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
+        );
+
+}
+
+
+/* Reviews laden */
+
+function loadReviews(){
+
+    const reviews =
+        JSON.parse(
+            localStorage.getItem(
+                "minipraathuisReviews"
+            )
+        ) || [];
+
+
+    list.innerHTML = "";
+
+
+    if(reviews.length === 0){
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                ⭐ Nog geen recensies.<br><br>
+
+                Wees de eerste!
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    reviews.forEach(review => {
+
+        const element =
+            document.createElement(
+                "div"
+            );
+
+        element.className =
+            "review";
+
+
+        const stars =
+            "★".repeat(review.rating) +
+            "☆".repeat(
+                5 - review.rating
+            );
+
+
+        element.innerHTML = `
+
+            <div class="review-top">
+
+                <div class="review-name">
+                    👤 ${safe(review.name)}
+                </div>
+
+                <div class="review-date">
+                    ${dateText(review.date)}
+                </div>
+
+            </div>
+
+            <div class="review-stars">
+                ${stars}
+            </div>
+
+            <div class="review-text">
+                ${safe(review.text)}
+            </div>
+
+        `;
+
+
+        list.appendChild(element);
+
+    });
+
+}
+
+
+/* Nieuwe review */
+
+form.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+
+        if(rating === 0){
+
+            alert(
+                "⭐ Kies eerst een beoordeling."
+            );
+
+            return;
+
+        }
+
+
+        const name =
+            document
+                .getElementById(
+                    "reviewName"
+                )
+                .value
+                .trim();
+
+
+        const text =
+            document
+                .getElementById(
+                    "reviewText"
+                )
+                .value
+                .trim();
+
+
+        if(!name || !text){
+
+            alert(
+                "Vul alle velden in."
+            );
+
+            return;
+
+        }
+
+
+        const reviews =
+            JSON.parse(
+                localStorage.getItem(
+                    "minipraathuisReviews"
+                )
+            ) || [];
+
+
+        reviews.unshift({
+
+            name:name,
+
+            rating:rating,
+
+            text:text,
+
+            date:new Date()
+                .toISOString()
+
+        });
+
+
+        localStorage.setItem(
+            "minipraathuisReviews",
+            JSON.stringify(reviews)
+        );
+
+
+        form.reset();
+
+
+        rating = 0;
+
+
+        stars.forEach(star => {
+
+            star.classList.remove(
+                "active"
+            );
+
+        });
+
+
+        loadReviews();
+
+
+        showToast(
+            "⭐ Je recensie is geplaatst!"
+        );
+
+    }
+);
+
+
+/* Toast */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    toast.textContent =
+        message;
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(() => {
+
+        toast.classList.remove(
+            "show"
+        );
+
+    },3000);
+
+}
+
+
+/* Start */
+
+loadReviews();
+
+</script>
+
 </body>
 </html>
-```
