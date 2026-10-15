@@ -4,521 +4,569 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MiniPraathuis | Ontmoet, speel & ontdek!</title>
+<title>MiniPraathuis 🎉</title>
 <style>
 :root {
-  --bg:#100d20; --panel:#1d1833; --text:#fff;
-  --muted:#c9c2df; --pink:#ff55bc; --blue:#54c8ff;
-  --gold:#ffd65a; --border:#393052;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0; font-family:Arial,sans-serif; background:var(--bg);
-  color:var(--text); line-height:1.6;
+  --bg: #100b1b;
+  --card: #21152e;
+  --text: #fff;
+  --muted: #d8cce4;
+  --accent: #ff8b36;
+  --pink: #ff5c9b;
+  --border: #593768;
 }
 body.light {
-  --bg:#f4f1ff; --panel:#fff; --text:#241a40;
-  --muted:#635978; --border:#ded5f4;
+  --bg: #fff6ed;
+  --card: #ffffff;
+  --text: #321d40;
+  --muted: #67556f;
+  --border: #ead4ed;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  transition: background .2s, color .2s;
 }
 header {
-  padding:18px 5%; display:flex; align-items:center;
-  justify-content:space-between; gap:15px; flex-wrap:wrap;
-  background:var(--panel); border-bottom:1px solid var(--border);
-  position:sticky; top:0; z-index:10;
+  padding: 30px 18px;
+  text-align: center;
+  background: linear-gradient(120deg,#34164b,#6b2472,#e85b73);
 }
-.logo { font-size:25px; font-weight:900; color:var(--pink); }
-nav { display:flex; gap:14px; flex-wrap:wrap; }
-a { color:var(--blue); text-decoration:none; }
-nav a { color:var(--text); font-weight:bold; }
-nav a:hover { color:var(--pink); }
-button, .button {
-  border:0; padding:11px 16px; border-radius:12px;
-  background:linear-gradient(120deg,var(--pink),#9d6bff);
-  color:white; font-weight:bold; cursor:pointer;
+header h1 { margin: 0; font-size: clamp(30px,5vw,48px); }
+header p { margin: 8px 0 0; }
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: #180e23;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
-button:hover, .button:hover { filter:brightness(1.12); }
-button:focus-visible, a:focus-visible, input:focus-visible,
-textarea:focus-visible { outline:3px solid var(--blue); outline-offset:3px; }
-.container { width:min(1100px,92%); margin:auto; }
-.hero { padding:75px 0 55px; text-align:center; }
-.hero h1 { font-size:clamp(35px,7vw,65px); line-height:1.1; margin:15px 0; }
-.gradient {
-  background:linear-gradient(90deg,var(--pink),var(--blue));
-  color:transparent; background-clip:text;
+nav a, nav button {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 9px;
+  background: #382044;
+  font: inherit;
+  cursor: pointer;
 }
-.hero p { max-width:650px; margin:18px auto 25px; color:var(--muted); }
-section { padding:42px 0; scroll-margin-top:90px; }
-h2 { font-size:30px; margin:0 0 10px; }
-.intro { color:var(--muted); margin:0 0 22px; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+nav a:hover, nav button:hover { background: #69336f; }
+main { max-width: 1100px; margin: auto; padding: 20px; }
+section { padding: 28px 0; scroll-margin-top: 80px; }
+h2 { font-size: 30px; margin: 0 0 15px; }
+h3 { margin-top: 0; }
+p { color: var(--muted); }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 18px;
+}
 .card {
-  background:var(--panel); padding:23px; border-radius:18px;
-  border:1px solid var(--border);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 8px 25px #0002;
 }
-.card h3 { margin:8px 0; }
-.emoji { font-size:38px; }
-.muted { color:var(--muted); }
-.coinbar {
-  display:flex; align-items:center; justify-content:space-between;
-  flex-wrap:wrap; gap:15px; margin:22px 0;
+.emoji { font-size: 38px; }
+button, .btn {
+  background: linear-gradient(110deg,var(--accent),var(--pink));
+  color: #26132e;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 16px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
 }
-.coin-number { font-size:30px; font-weight:900; color:var(--gold); }
-.progress { background:var(--border); border-radius:20px; height:14px; overflow:hidden; }
-.progress div { height:100%; width:0; background:linear-gradient(90deg,#ffb52e,#ffe985); transition:width .3s; }
-.badge-card { text-align:center; border:2px solid var(--gold); }
-.badge-icon {
-  width:105px; height:105px; margin:12px auto;
-  border-radius:50%; display:grid; place-items:center;
-  font-size:49px; background:radial-gradient(circle,#fff1a6,#f2ad27,#9d5d0c);
-  box-shadow:0 0 25px #ffca4c66;
+button:hover, .btn:hover { filter: brightness(1.08); }
+input, select, textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0 15px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
 }
-.locked .badge-icon { filter:grayscale(1); opacity:.55; box-shadow:none; }
-.notice { color:var(--muted); font-size:14px; }
-input, textarea, select {
-  display:block; width:100%; padding:12px; margin:8px 0 15px;
-  border-radius:10px; border:1px solid var(--border);
-  background:var(--bg); color:var(--text); font:inherit;
+label { font-weight: bold; }
+.badge {
+  display: inline-block;
+  border: 2px solid #ffd75e;
+  background: linear-gradient(135deg,#fff0a1,#f4b82e,#ffdf72);
+  color: #4b3000;
+  border-radius: 14px;
+  padding: 9px 15px;
+  font-weight: 900;
+  box-shadow: 0 0 20px #ffcf4d55;
 }
-label { font-weight:bold; }
-footer { padding:30px 0; margin-top:35px; text-align:center; background:var(--panel); color:var(--muted); }
-#toast {
-  position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
-  background:#24203a; color:white; padding:14px 20px;
-  border-radius:12px; display:none; z-index:20;
-  box-shadow:0 4px 25px #0006; max-width:90%; text-align:center;
+.progress {
+  height: 13px;
+  background: #45314f;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 0;
 }
-.hidden { display:none !important; }
-@media(max-width:650px) {
-  header { position:static; }
-  nav { width:100%; gap:12px; }
-  .hero { padding-top:45px; }
+#progressFill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg,#ff8b36,#ffe16b);
+  transition: width .3s;
+}
+.notice { font-size: 13px; }
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  background: #180e23;
+  color: #e9d8f2;
+}
+.old-halloween {
+  padding: 30px 0;
+  background:
+    radial-gradient(ellipse at top,#44204f 0%,transparent 70%);
+}
+.halloween-card, .halloween-form {
+  width: 100%;
+  margin: 0 auto 24px;
+  padding: 28px;
+  border: 1px solid #743b78;
+  border-radius: 24px;
+  background: linear-gradient(145deg,#291735,#171020);
+  box-shadow: 0 12px 40px #0005;
+  color: white;
+}
+.halloween-card { text-align: center; border-top: 4px solid #ff8b36; }
+.halloween-tag {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 30px;
+  background: #ff8b36;
+  color: #24112c;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.halloween-decor { margin: 18px 0; font-size: 36px; letter-spacing: 7px; }
+.halloween-card h2, .halloween-form h3 { color: #ffab54; }
+.halloween-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.halloween-detail {
+  padding: 16px 10px;
+  border-radius: 15px;
+  background: #382242;
+  border: 1px solid #694074;
+}
+.halloween-detail span { font-size: 26px; }
+.halloween-detail strong { display: block; color: #ffb15e; }
+.halloween-detail p { margin: 4px 0 0; color: white; }
+.halloween-form label { display: block; margin-top: 12px; }
+.halloween-form input, .halloween-form select, .halloween-form textarea {
+  background: #100b1b;
+  color: white;
+  border-color: #694074;
+}
+.halloween-form .btn { width: 100%; }
+.review { border-left: 4px solid var(--accent); }
+.hidden { display: none; }
+@media(max-width:500px) {
+  main { padding: 15px; }
+  .halloween-card, .halloween-form { padding: 20px 15px; }
+  .halloween-decor { font-size: 28px; letter-spacing: 3px; }
 }
 </style>
 </head>
 <body>
-
-<header>
-  <div class="logo">🏡 MiniPraathuis</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#activiteiten">Activiteiten</a>
-    <a href="#fun">Fun Zone</a>
-    <a href="#coins">Coins & badges</a>
-    <a href="#agenda">Agenda</a>
-    <a href="#halloween">Halloween</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <button id="themeButton" type="button">☀️ Thema</button>
+<header id="home">
+  <h1>🏡 MiniPraathuis</h1>
+  <p>Een gezellige plek om samen te komen, plezier te maken en nieuwe dingen te beleven!</p>
 </header>
 
+<nav>
+  <a href="#home">Home</a>
+  <a href="#activiteiten">Activiteiten</a>
+  <a href="#funzone">Fun Zone</a>
+  <a href="#agenda">Agenda</a>
+  <a href="#halloween">Halloween 🎃</a>
+  <a href="#recensies">Recensies</a>
+  <a href="#contact">Contact</a>
+  <button id="themeToggle" type="button">☀️ Thema</button>
+</nav>
+
 <main>
-<section class="hero" id="home">
-  <div class="container">
-    <div class="emoji">🎨 🏡 🎮</div>
-    <h1>Welkom bij <span class="gradient">MiniPraathuis!</span></h1>
-    <p>Een gezellige plek voor leuke activiteiten, nieuwe ideeën,
-       spelletjes en bijzondere momenten. Ontdek wat er te doen is!</p>
-    <a class="button" href="#activiteiten">Ontdek activiteiten</a>
-    <a class="button" href="#coins">Bekijk je badges</a>
-  </div>
-</section>
-
-<section id="activiteiten">
-  <div class="container">
-    <h2>🎉 Activiteiten</h2>
-    <p class="intro">Ontdek iets leuks om te doen.</p>
-    <div class="grid">
-      <article class="card">
-        <div class="emoji">🎨</div>
-        <h3>Creatief bezig</h3>
-        <p class="muted">Maak tekeningen, knutselwerkjes en eigen ontwerpen.</p>
-        <button onclick="earnCoins(10,'Creatieve activiteit')">Voltooid: +10 coins</button>
-      </article>
-      <article class="card">
-        <div class="emoji">🧩</div>
-        <h3>Puzzels & quizzen</h3>
-        <p class="muted">Test je kennis en los leuke raadsels op.</p>
-        <button onclick="earnCoins(10,'Puzzelactiviteit')">Voltooid: +10 coins</button>
-      </article>
-      <article class="card">
-        <div class="emoji">🌳</div>
-        <h3>Buiten ontdekken</h3>
-        <p class="muted">Ga op ontdekking, doe een speurtocht of speel buiten.</p>
-        <button onclick="earnCoins(10,'Buitenactiviteit')">Voltooid: +10 coins</button>
-      </article>
-    </div>
-    <p class="notice">Coins zijn spelpunten op deze website. De activiteitenknoppen zijn bedoeld als demo; ze controleren niet of een activiteit echt is uitgevoerd.</p>
-  </div>
-</section>
-
-<section id="fun">
-  <div class="container">
-    <h2>🎮 Fun Zone</h2>
-    <p class="intro">Speel, ontdek en verzamel coins!</p>
-    <div class="grid">
-      <article class="card">
-        <div class="emoji">🎲</div>
-        <h3>Willekeurige uitdaging</h3>
-        <p id="challengeText">Klik voor een leuke uitdaging.</p>
-        <button onclick="newChallenge()">Geef mij een uitdaging</button>
-      </article>
-      <article class="card">
-        <div class="emoji">🪙</div>
-        <h3>Coin-clicker</h3>
-        <p>Klik op de knop om coins te verzamelen.</p>
-        <button onclick="earnCoins(1,'Coin-clicker')">🪙 Verzamel 1 coin</button>
-      </article>
-      <article class="card">
-        <div class="emoji">💡</div>
-        <h3>Idee van de dag</h3>
-        <p id="ideaText">Klik om inspiratie te krijgen.</p>
-        <button onclick="newIdea()">Nieuw idee</button>
-      </article>
-    </div>
+<section id="welkom">
+  <div class="card">
+    <h2>Welkom bij MiniPraathuis! 🎉</h2>
+    <p>Ontdek activiteiten, doe mee aan uitdagingen en verzamel coins op deze website.</p>
+    <p>Iedere keer dat je een activiteit uitvoert, kun je coins verdienen.</p>
   </div>
 </section>
 
 <section id="coins">
-  <div class="container">
-    <h2>🪙 Mijn coins & badges</h2>
-    <p class="intro">Spaar coins en ontgrendel de speciale MiniPraathuis-badge!</p>
+  <h2>🪙 Mijn MiniCoins</h2>
+  <div class="card">
+    <p>Jouw saldo:</p>
+    <h2><span id="coinCount">0</span> coins</h2>
+    <div class="progress"><div id="progressFill"></div></div>
+    <p id="progressText">Nog 1.000 coins tot je gouden badge!</p>
+    <div id="goldBadge" class="badge hidden">🏆 GOUDEN MINI-PRAATHUIS BADGE</div>
+    <p class="notice">Je coins worden op dit apparaat in je browser opgeslagen. Ze worden niet automatisch tussen verschillende apparaten gesynchroniseerd.</p>
+    <button id="dailyCoins" type="button">🎁 Dagelijkse bonus (+25)</button>
+  </div>
+</section>
 
+<section id="activiteiten">
+  <h2>🎨 Activiteiten</h2>
+  <div class="grid">
     <div class="card">
-      <div class="coinbar">
-        <div>
-          <div class="muted">Jouw saldo</div>
-          <div class="coin-number">🪙 <span id="coinCount">0</span> coins</div>
-        </div>
-        <div>
-          <div class="muted">Doel: gouden badge</div>
-          <strong id="remaining">Nog 1.000 coins nodig</strong>
-        </div>
-      </div>
-      <div class="progress"><div id="progressBar"></div></div>
-      <p id="progressText" class="notice">0 van de 1.000 coins verzameld.</p>
+      <div class="emoji">🎨</div>
+      <h3>Creatief bezig</h3>
+      <p>Maak een tekening, poster of ander kunstwerk.</p>
+      <button type="button" data-activity="creative">Voltooid: +20 coins</button>
     </div>
+    <div class="card">
+      <div class="emoji">🧩</div>
+      <h3>Puzzelmoment</h3>
+      <p>Los een puzzel op of bedenk een raadsel.</p>
+      <button type="button" data-activity="puzzle">Voltooid: +15 coins</button>
+    </div>
+    <div class="card">
+      <div class="emoji">🌱</div>
+      <h3>Groene uitdaging</h3>
+      <p>Verzin een idee om de buurt groener te maken.</p>
+      <button type="button" data-activity="green">Voltooid: +20 coins</button>
+    </div>
+    <div class="card">
+      <div class="emoji">🤝</div>
+      <h3>Samen iets doen</h3>
+      <p>Bedenk een leuke activiteit om met anderen te doen.</p>
+      <button type="button" data-activity="together">Voltooid: +15 coins</button>
+    </div>
+  </div>
+</section>
 
-    <div class="grid" style="margin-top:20px">
-      <article class="card badge-card locked" id="goldBadge">
-        <div class="badge-icon" id="badgeIcon">🏅</div>
-        <h3>Gouden 1.000 Coins-badge</h3>
-        <p id="badgeStatus">🔒 Nog niet ontgrendeld</p>
-        <p class="muted">Verzamel 1.000 coins om deze badge te verdienen!</p>
-      </article>
-      <article class="card">
-        <div class="emoji">⭐</div>
-        <h3>Jouw voortgang</h3>
-        <p id="milestoneText">Je avontuur begint hier!</p>
-        <p class="notice">Je coins en badge worden op dit apparaat opgeslagen.</p>
-        <button onclick="showCoinsInfo()">Hoe werkt het?</button>
-      </article>
+<section id="funzone">
+  <h2>🎮 Fun Zone</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>🎲 Willekeurige uitdaging</h3>
+      <p id="challengeText">Klik op de knop voor een uitdaging!</p>
+      <button id="newChallenge" type="button">Nieuwe uitdaging</button>
+    </div>
+    <div class="card">
+      <h3>💡 Ideeënbus</h3>
+      <p>Welk evenement zouden we kunnen organiseren?</p>
+      <form id="ideaForm">
+        <label for="idea">Jouw idee</label>
+        <textarea id="idea" maxlength="500" required placeholder="Mijn idee is..."></textarea>
+        <button type="submit">Idee bewaren</button>
+      </form>
+      <p id="ideaStatus" role="status"></p>
     </div>
   </div>
 </section>
 
 <section id="agenda">
-  <div class="container">
-    <h2>📅 Agenda</h2>
-    <p class="intro">Bekijk de geplande activiteiten.</p>
-    <div class="grid">
-      <article class="card">
-        <div class="emoji">🎃</div>
-        <h3>Halloween bij MiniPraathuis</h3>
-        <p>30 oktober 2026 om 18:30</p>
-        <p class="muted">Deelname: € 2,50 per persoon.</p>
-        <a href="#halloween">Bekijk en meld je aan →</a>
-      </article>
-      <article class="card">
-        <div class="emoji">💬</div>
-        <h3>Nieuwe activiteiten</h3>
-        <p class="muted">Kom later terug voor meer nieuws en plannen.</p>
-      </article>
+  <h2>📅 Agenda</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="emoji">🎃</div>
+      <h3>Halloweenfeest</h3>
+      <p>Vrijdag 30 oktober 2026 om 18:30 uur.</p>
+      <p>Deelname: € 2,50 per persoon.</p>
+      <a class="btn" href="#halloween">Bekijk Halloween</a>
+    </div>
+    <div class="card">
+      <div class="emoji">🎉</div>
+      <h3>Nieuwe activiteiten</h3>
+      <p>Heb je een leuk idee voor een toekomstige activiteit? Stuur het in via de Ideeënbus.</p>
+      <a class="btn" href="#funzone">Idee insturen</a>
     </div>
   </div>
 </section>
 
-<section id="halloween">
-  <div class="container">
-    <h2>🎃 Halloweenfeest</h2>
-    <p class="intro">Vier Halloween met MiniPraathuis!</p>
-    <div class="card">
-      <h3>👻 Vrijdag 30 oktober 2026 · 18:30</h3>
-      <p>Deelname kost € 2,50 per persoon.</p>
-      <p id="countdown" class="coin-number"></p>
-      <form action="https://formspree.io/f/mbgdorbq" method="POST">
-        <label for="hName">Naam</label>
-        <input id="hName" name="naam" required placeholder="Je naam">
-        <label for="hEmail">E-mailadres</label>
-        <input id="hEmail" name="email" type="email" required placeholder="jij@example.com">
-        <label for="hPeople">Aantal personen</label>
-        <select id="hPeople" name="aantal_personen">
-          <option value="1">1 persoon — € 2,50</option>
-          <option value="2">2 personen — € 5,00</option>
-          <option value="3">3 personen — € 7,50</option>
-          <option value="4">4 personen — € 10,00</option>
-        </select>
-        <button type="submit">Verstuur aanmelding</button>
-      </form>
-      <p class="notice">Een aanmelding wordt pas verstuurd als je formulier correct is ingesteld. Controleer de inzendingen in je Formspree-account.</p>
+<section id="halloween" class="old-halloween">
+  <div class="halloween-card">
+    <div class="halloween-tag">🎃 SPECIAAL EVENEMENT</div>
+    <div class="halloween-decor">👻 🎃 🦇</div>
+    <h2>Halloween bij MiniPraathuis 👻</h2>
+    <p>Durf jij het aan? Kom gezellig Halloween vieren bij MiniPraathuis! Er staat een spannende en gezellige avond op je te wachten.</p>
+    <div class="halloween-details">
+      <div class="halloween-detail"><span>📅</span><strong>Datum</strong><p>30 oktober 2026</p></div>
+      <div class="halloween-detail"><span>🕡</span><strong>Tijd</strong><p>18:30 uur</p></div>
+      <div class="halloween-detail"><span>💰</span><strong>Deelname</strong><p>€ 2,50 per persoon</p></div>
     </div>
+    <a href="#halloweenAanmelden" class="btn">🎃 Ik wil me aanmelden!</a>
+    <p>🕸️ Een gezellige Halloweenavond bij MiniPraathuis! 🕸️</p>
+    <h3 style="color:#ffab54;margin-top:24px">⏳ Aftellen tot Halloween</h3>
+    <h2 id="countdown">We tellen af...</h2>
+  </div>
+
+  <div class="halloween-form" id="halloweenAanmelden">
+    <h3>Meld je aan! 👻</h3>
+    <p>Vul hieronder je gegevens in om je aan te melden.</p>
+    <form action="https://formspree.io/f/mbgdorbq" method="POST">
+      <input type="hidden" name="_subject" value="Halloween-aanmelding MiniPraathuis">
+      <label for="halloweenNaam">Naam</label>
+      <input id="halloweenNaam" name="naam" maxlength="100" required placeholder="Je naam">
+
+      <label for="halloweenAantal">Aantal personen</label>
+      <select id="halloweenAantal" name="aantal_personen" required>
+        <option value="1">1 persoon — € 2,50</option>
+        <option value="2">2 personen — € 5,00</option>
+        <option value="3">3 personen — € 7,50</option>
+        <option value="4">4 personen — € 10,00</option>
+        <option value="5">5 personen — € 12,50</option>
+        <option value="6">6 personen — € 15,00</option>
+        <option value="7">7 personen — € 17,50</option>
+        <option value="8">8 personen — € 20,00</option>
+        <option value="9">9 personen — € 22,50</option>
+        <option value="10">10 personen — € 25,00</option>
+        <option value="11">11 personen — € 27,50</option>
+        <option value="12">12 personen — € 30,00</option>
+        <option value="13">13 personen — € 32,50</option>
+        <option value="14">14 personen — € 35,00</option>
+        <option value="15">15 personen — € 37,50</option>
+        <option value="16">16 personen — € 40,00</option>
+        <option value="17">17 personen — € 42,50</option>
+        <option value="18">18 personen — € 45,00</option>
+        <option value="19">19 personen — € 47,50</option>
+        <option value="20">20 personen — € 50,00</option>
+      </select>
+
+      <label for="halloweenBericht">Bericht (optioneel)</label>
+      <textarea id="halloweenBericht" name="bericht" rows="3" maxlength="500" placeholder="Nog iets te vertellen?"></textarea>
+      <button class="btn" type="submit">✅ Aanmelding versturen</button>
+    </form>
   </div>
 </section>
 
-<section id="reviews">
-  <div class="container">
-    <h2>⭐ Reviews</h2>
-    <p class="intro">Lees reviews die op dit apparaat zijn geplaatst.</p>
+<section id="recensies">
+  <h2>⭐ Recensies</h2>
+  <div class="grid">
     <div class="card">
+      <h3>Laat een recensie achter</h3>
       <form id="reviewForm">
         <label for="reviewName">Naam of bijnaam</label>
-        <input id="reviewName" required maxlength="40" placeholder="Je naam">
+        <input id="reviewName" maxlength="60" required placeholder="Je naam">
         <label for="reviewRating">Beoordeling</label>
-        <select id="reviewRating">
-          <option value="5">⭐⭐⭐⭐⭐ — Super!</option>
-          <option value="4">⭐⭐⭐⭐ — Leuk!</option>
-          <option value="3">⭐⭐⭐ — Goed</option>
-          <option value="2">⭐⭐ — Kan beter</option>
-          <option value="1">⭐ — Matig</option>
+        <select id="reviewRating" required>
+          <option value="5">⭐⭐⭐⭐⭐ - Super!</option>
+          <option value="4">⭐⭐⭐⭐ - Leuk!</option>
+          <option value="3">⭐⭐⭐ - Prima</option>
+          <option value="2">⭐⭐ - Kan beter</option>
+          <option value="1">⭐ - Niet zo leuk</option>
         </select>
-        <label for="reviewText">Jouw review</label>
-        <textarea id="reviewText" required maxlength="500" rows="3" placeholder="Wat vind je van MiniPraathuis?"></textarea>
-        <button type="submit">Plaats review</button>
+        <label for="reviewText">Jouw recensie</label>
+        <textarea id="reviewText" maxlength="500" required placeholder="Wat vond je ervan?"></textarea>
+        <button type="submit">Recensie plaatsen</button>
       </form>
+      <p class="notice">Recensies worden alleen in deze browser opgeslagen en zijn niet automatisch zichtbaar voor andere bezoekers.</p>
     </div>
-    <div id="reviewList" class="grid" style="margin-top:20px"></div>
-    <p class="notice">Reviews worden lokaal opgeslagen en zijn niet automatisch zichtbaar voor andere bezoekers.</p>
+    <div class="card">
+      <h3>Bezoekersrecensies</h3>
+      <div id="reviewsList"><p>Nog geen recensies. Wees de eerste!</p></div>
+    </div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="container">
-    <h2>📬 Contact</h2>
-    <p class="intro">Heb je een vraag of een leuk idee? Stuur een bericht.</p>
-    <div class="card">
-      <p><strong>📍 Adres:</strong> Doelstraat 4</p>
-      <form action="https://formspree.io/f/mbgdorbq" method="POST">
-        <label for="cName">Naam</label>
-        <input id="cName" name="naam" required placeholder="Je naam">
-        <label for="cEmail">E-mailadres</label>
-        <input id="cEmail" name="email" type="email" required placeholder="jij@example.com">
-        <label for="cMessage">Bericht</label>
-        <textarea id="cMessage" name="bericht" rows="4" required placeholder="Typ hier je bericht"></textarea>
-        <button type="submit">Verstuur bericht</button>
-      </form>
-    </div>
+  <h2>✉️ Contact</h2>
+  <div class="card">
+    <p>Heb je een vraag of een idee? Stuur ons een bericht.</p>
+    <form action="https://formspree.io/f/mbgdorbq" method="POST">
+      <input type="hidden" name="_subject" value="Bericht via MiniPraathuis">
+      <label for="contactName">Naam</label>
+      <input id="contactName" name="naam" maxlength="100" required>
+      <label for="contactEmail">E-mailadres</label>
+      <input id="contactEmail" name="email" type="email" maxlength="200" required>
+      <label for="contactMessage">Bericht</label>
+      <textarea id="contactMessage" name="bericht" rows="4" maxlength="2000" required></textarea>
+      <button type="submit">Bericht versturen</button>
+    </form>
+    <p>📍 Locatie: Doelstraat 4</p>
   </div>
 </section>
 </main>
 
 <footer>
-  <div class="container">
-    <p>🏡 MiniPraathuis — samen maken we het gezellig!</p>
-    <p>© <span id="year"></span> MiniPraathuis</p>
-  </div>
+  <p>🏡 MiniPraathuis · Samen maken we het gezellig!</p>
+  <p>© <span id="year"></span> MiniPraathuis</p>
 </footer>
 
-<div id="toast" role="status" aria-live="polite"></div>
-
 <script>
-const COIN_KEY = "miniPraathuisCoins";
-const BADGE_KEY = "miniPraathuisGoldBadge";
-const REVIEW_KEY = "miniPraathuisReviews";
-const BADGE_GOAL = 1000;
+const $ = id => document.getElementById(id);
 
-function readCoins() {
+function readNumber(key, fallback = 0) {
   try {
-    const value = Number(localStorage.getItem(COIN_KEY) || 0);
-    return Number.isFinite(value) ? Math.max(0, Math.floor(value)) : 0;
-  } catch (error) {
-    return 0;
+    const value = Number(localStorage.getItem(key));
+    return Number.isFinite(value) && value >= 0 ? value : fallback;
+  } catch {
+    return fallback;
   }
 }
-
-let coins = readCoins();
-
-function saveCoins() {
+function readJSON(key, fallback) {
   try {
-    localStorage.setItem(COIN_KEY, String(coins));
-  } catch (error) {
-    showToast("Opslaan lukt niet in deze browser.");
+    const value = JSON.parse(localStorage.getItem(key));
+    return Array.isArray(value) ? value : fallback;
+  } catch {
+    return fallback;
   }
 }
-
-function showToast(message) {
-  const toast = document.getElementById("toast");
-  toast.textContent = message;
-  toast.style.display = "block";
-  clearTimeout(window.toastTimer);
-  window.toastTimer = setTimeout(() => {
-    toast.style.display = "none";
-  }, 3500);
+function save(key, value) {
+  try { localStorage.setItem(key, value); } catch {}
 }
 
-function updateCoins() {
-  const unlocked = coins >= BADGE_GOAL;
-  document.getElementById("coinCount").textContent = coins.toLocaleString("nl-NL");
-  document.getElementById("remaining").textContent = unlocked
-    ? "Badge ontgrendeld! 🎉"
-    : "Nog " + (BADGE_GOAL - coins).toLocaleString("nl-NL") + " coins nodig";
-
-  document.getElementById("progressBar").style.width =
-    Math.min(100, coins / BADGE_GOAL * 100) + "%";
-
-  document.getElementById("progressText").textContent =
-    Math.min(coins, BADGE_GOAL).toLocaleString("nl-NL") +
-    " van de 1.000 coins verzameld.";
-
-  document.getElementById("goldBadge").classList.toggle("locked", !unlocked);
-  document.getElementById("badgeIcon").textContent = unlocked ? "🏆" : "🏅";
-  document.getElementById("badgeStatus").textContent = unlocked
-    ? "✅ VERDIEND! Gouden badge ontgrendeld!"
-    : "🔒 Nog niet ontgrendeld";
-
-  document.getElementById("milestoneText").textContent = unlocked
-    ? "Geweldig! Je hebt de gouden badge verdiend!"
-    : coins === 0
-      ? "Je avontuur begint hier!"
-      : "Je hebt al " + coins.toLocaleString("nl-NL") + " coins gespaard.";
-
-  try {
-    const wasUnlocked = localStorage.getItem(BADGE_KEY) === "true";
-    if (unlocked && !wasUnlocked) {
-      localStorage.setItem(BADGE_KEY, "true");
-      showToast("🎉 Gefeliciteerd! Je hebt de 1.000 Coins-badge verdiend!");
-    }
-    if (!unlocked) localStorage.removeItem(BADGE_KEY);
-  } catch (error) {}
+let coins = readNumber("miniPraathuisCoins");
+const doneActivities = new Set(readJSON("miniPraathuisDone", []));
+function renderCoins() {
+  $("coinCount").textContent = coins.toLocaleString("nl-NL");
+  const percent = Math.min(100, coins / 1000 * 100);
+  $("progressFill").style.width = percent + "%";
+  $("progressText").textContent = coins >= 1000
+    ? "Je hebt de 1.000 coins gehaald! Gefeliciteerd! 🎉"
+    : `Nog ${(1000 - coins).toLocaleString("nl-NL")} coins tot je gouden badge!`;
+  $("goldBadge").classList.toggle("hidden", coins < 1000);
 }
-
-function earnCoins(amount, reason) {
-  const before = coins;
+function addCoins(amount) {
   coins += amount;
-  saveCoins();
-  updateCoins();
-
-  if (before < BADGE_GOAL && coins >= BADGE_GOAL) {
-    showToast("🏆 Je hebt de gouden 1.000 Coins-badge verdiend!");
-  } else {
-    showToast("+" + amount + " coins! " + reason + " 🪙");
+  save("miniPraathuisCoins", String(coins));
+  renderCoins();
+}
+document.querySelectorAll("[data-activity]").forEach(button => {
+  const id = button.dataset.activity;
+  if (doneActivities.has(id)) {
+    button.disabled = true;
+    button.textContent = "Al voltooid ✓";
   }
-}
-
-function showCoinsInfo() {
-  showToast("Verdien coins met de knoppen op de website. Bij 1.000 coins ontgrendel je de gouden badge.");
-}
-
-const challenges = [
-  "Bedenk een nieuw creatief idee.",
-  "Los een raadsel op.",
-  "Verzin een leuke activiteit.",
-  "Maak een tekening.",
-  "Bedenk een leuke quizvraag.",
-  "Doe iets aardigs voor iemand."
-];
-
-const ideas = [
-  "Organiseer een mini-quiz!",
-  "Maak je eigen feestelijke poster.",
-  "Verzin een speurtocht.",
-  "Ontwerp een nieuw spel.",
-  "Bedenk een thema voor een activiteit."
-];
-
-function newChallenge() {
-  const item = challenges[Math.floor(Math.random() * challenges.length)];
-  document.getElementById("challengeText").textContent = item;
-}
-
-function newIdea() {
-  const item = ideas[Math.floor(Math.random() * ideas.length)];
-  document.getElementById("ideaText").textContent = item;
-}
-
-document.getElementById("themeButton").addEventListener("click", () => {
-  document.body.classList.toggle("light");
-  document.getElementById("themeButton").textContent =
-    document.body.classList.contains("light") ? "🌙 Donker thema" : "☀️ Licht thema";
-});
-
-function getReviews() {
-  try {
-    return JSON.parse(localStorage.getItem(REVIEW_KEY) || "[]");
-  } catch (error) {
-    return [];
-  }
-}
-
-function renderReviews() {
-  const list = document.getElementById("reviewList");
-  list.replaceChildren();
-  getReviews().slice().reverse().forEach(review => {
-    const card = document.createElement("article");
-    card.className = "card";
-
-    const title = document.createElement("h3");
-    title.textContent = review.name;
-
-    const stars = document.createElement("p");
-    stars.textContent = "⭐".repeat(review.rating);
-
-    const body = document.createElement("p");
-    body.textContent = review.text;
-
-    card.append(title, stars, body);
-    list.appendChild(card);
+  button.addEventListener("click", () => {
+    if (doneActivities.has(id)) return;
+    const amounts = {creative:20,puzzle:15,green:20,together:15};
+    doneActivities.add(id);
+    save("miniPraathuisDone", JSON.stringify([...doneActivities]));
+    button.disabled = true;
+    button.textContent = "Al voltooid ✓";
+    addCoins(amounts[id] || 0);
   });
-
-  if (!list.children.length) {
-    const empty = document.createElement("p");
-    empty.className = "muted";
-    empty.textContent = "Er zijn nog geen reviews geplaatst.";
-    list.appendChild(empty);
-  }
-}
-
-document.getElementById("reviewForm").addEventListener("submit", event => {
-  event.preventDefault();
-
-  const reviews = getReviews();
-  reviews.push({
-    name: document.getElementById("reviewName").value.trim(),
-    rating: Number(document.getElementById("reviewRating").value),
-    text: document.getElementById("reviewText").value.trim()
-  });
-
-  try {
-    localStorage.setItem(REVIEW_KEY, JSON.stringify(reviews));
-    event.target.reset();
-    renderReviews();
-    showToast("Bedankt voor je review! ⭐");
-  } catch (error) {
-    showToast("De review kon niet worden opgeslagen.");
-  }
 });
-
-function updateCountdown() {
-  const target = new Date("2026-10-30T18:30:00");
-  const difference = target.getTime() - Date.now();
-  const output = document.getElementById("countdown");
-
-  if (difference <= 0) {
-    output.textContent = "🎃 Het geplande tijdstip is aangebroken of voorbij!";
+$("dailyCoins").addEventListener("click", () => {
+  const today = new Date().toLocaleDateString("sv-SE");
+  if (localStorage.getItem("miniPraathuisDaily") === today) {
+    alert("Je hebt je dagelijkse bonus vandaag al opgehaald!");
     return;
   }
+  save("miniPraathuisDaily", today);
+  addCoins(25);
+  $("dailyCoins").textContent = "Bonus opgehaald ✓";
+  $("dailyCoins").disabled = true;
+});
+if (localStorage.getItem("miniPraathuisDaily") === new Date().toLocaleDateString("sv-SE")) {
+  $("dailyCoins").textContent = "Bonus opgehaald ✓";
+  $("dailyCoins").disabled = true;
+}
+renderCoins();
 
-  const days = Math.floor(difference / 86400000);
-  const hours = Math.floor((difference % 86400000) / 3600000);
-  const minutes = Math.floor((difference % 3600000) / 60000);
-  output.textContent = "⏳ Nog " + days + " dagen, " + hours +
-    " uur en " + minutes + " minuten!";
+const challenges = [
+  "Bedenk drie nieuwe activiteiten voor MiniPraathuis.",
+  "Maak een vrolijke tekening of mini-poster.",
+  "Verzin een raadsel voor je vrienden.",
+  "Bedenk een manier om de buurt schoner te maken.",
+  "Maak een lijst met vijf leuke spelletjes.",
+  "Bedenk een thema voor een volgend evenement."
+];
+$("newChallenge").addEventListener("click", () => {
+  $("challengeText").textContent = challenges[Math.floor(Math.random() * challenges.length)];
+});
+
+$("ideaForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const idea = $("idea").value.trim();
+  if (!idea) return;
+  const ideas = readJSON("miniPraathuisIdeas", []);
+  ideas.push({idea, date:new Date().toLocaleDateString("nl-NL")});
+  save("miniPraathuisIdeas", JSON.stringify(ideas));
+  $("idea").value = "";
+  $("ideaStatus").textContent = "Bedankt! Je idee is op dit apparaat bewaard. 💡";
+});
+
+function renderReviews() {
+  const reviews = readJSON("miniPraathuisReviews", []);
+  const list = $("reviewsList");
+  list.replaceChildren();
+  if (!reviews.length) {
+    list.textContent = "Nog geen recensies. Wees de eerste!";
+    return;
+  }
+  reviews.slice().reverse().forEach(review => {
+    const card = document.createElement("div");
+    card.className = "card review";
+    const name = document.createElement("strong");
+    name.textContent = review.name;
+    const stars = document.createElement("p");
+    stars.textContent = "⭐".repeat(review.rating);
+    const message = document.createElement("p");
+    message.textContent = review.text;
+    const date = document.createElement("small");
+    date.textContent = review.date;
+    card.append(name, stars, message, date);
+    list.append(card);
+  });
+}
+$("reviewForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const reviews = readJSON("miniPraathuisReviews", []);
+  reviews.push({
+    name:$("reviewName").value.trim(),
+    rating:Number($("reviewRating").value),
+    text:$("reviewText").value.trim(),
+    date:new Date().toLocaleDateString("nl-NL")
+  });
+  save("miniPraathuisReviews", JSON.stringify(reviews));
+  $("reviewForm").reset();
+  renderReviews();
+});
+renderReviews();
+
+$("themeToggle").addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  save("miniPraathuisTheme", document.body.classList.contains("light") ? "light" : "dark");
+});
+if (localStorage.getItem("miniPraathuisTheme") === "light") {
+  document.body.classList.add("light");
 }
 
-document.getElementById("year").textContent = new Date().getFullYear();
+function updateCountdown() {
+  const eventDate = new Date("2026-10-30T18:30:00");
+  const distance = eventDate.getTime() - Date.now();
+  if (distance <= 0) {
+    $("countdown").textContent = "Het is Halloween! 🎃";
+    return;
+  }
+  const days = Math.floor(distance / 86400000);
+  const hours = Math.floor(distance % 86400000 / 3600000);
+  const minutes = Math.floor(distance % 3600000 / 60000);
+  const seconds = Math.floor(distance % 60000 / 1000);
+  $("countdown").textContent = `${days} dagen · ${hours} uur · ${minutes} min · ${seconds} sec`;
+}
 updateCountdown();
-renderReviews();
-updateCoins();
-setInterval(updateCountdown, 60000);
+setInterval(updateCountdown, 1000);
+$("year").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
