@@ -4,192 +4,329 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b1020">
-<meta name="description" content="MiniPraathuis: activiteiten, spelletjes, evenementen en gezelligheid.">
-<title>MiniPraathuis 🏡</title>
+<meta name="theme-color" content="#090d1c">
+<title>MiniPraathuis 🏡 | De leukste plek voor ideeën!</title>
 
 <style>
 :root {
-  --bg:#0b1020;
-  --panel:#151d33;
-  --panel2:#222d49;
-  --text:#f7f8ff;
-  --muted:#b9c2da;
+  --bg:#090d1c;
+  --panel:#131b31;
+  --panel2:#202b47;
+  --text:#f8f9ff;
+  --muted:#b7c2dc;
   --pink:#ff4fa3;
-  --purple:#946bff;
-  --blue:#46c8ff;
-  --green:#56e6b1;
+  --purple:#9568ff;
+  --blue:#45d5ff;
+  --green:#59e5ae;
   --border:rgba(255,255,255,.13);
 }
 body.light {
-  --bg:#f5f4ff;
+  --bg:#f4f2ff;
   --panel:#fff;
-  --panel2:#eeeaff;
-  --text:#20203a;
-  --muted:#62647b;
-  --border:rgba(40,35,80,.13);
+  --panel2:#eae6ff;
+  --text:#201b39;
+  --muted:#626079;
+  --border:rgba(40,30,80,.15);
 }
 * {box-sizing:border-box}
-html {scroll-behavior:smooth;scroll-padding-top:85px}
+html {scroll-behavior:smooth;scroll-padding-top:90px}
 body {
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
   background:var(--bg);
   color:var(--text);
   line-height:1.65;
-  transition:background .2s,color .2s;
 }
 button,input,textarea,select {font:inherit}
 button {cursor:pointer}
 a {color:inherit}
 .container {width:min(1120px,92%);margin:auto}
+
 header {
-  position:sticky;top:0;z-index:100;
+  position:sticky;
+  top:0;
+  z-index:20;
   background:var(--bg);
   border-bottom:1px solid var(--border);
 }
 nav {
-  min-height:72px;display:flex;align-items:center;
-  justify-content:space-between;gap:12px;
+  min-height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
 }
-.logo {font-size:1.3rem;font-weight:900;text-decoration:none;white-space:nowrap}
+.logo {
+  font-size:1.25rem;
+  font-weight:900;
+  text-decoration:none;
+  white-space:nowrap;
+}
 .logo span {color:var(--pink)}
 .nav-links {display:flex;align-items:center;gap:15px}
-.nav-links a {text-decoration:none;color:var(--muted);font-size:.88rem}
+.nav-links a {
+  text-decoration:none;
+  color:var(--muted);
+  font-size:.88rem;
+}
 .nav-links a:hover {color:var(--pink)}
-.nav-actions {display:flex;gap:7px}
+.nav-actions {display:flex;gap:8px}
 .icon-button,.menu-button {
-  border:1px solid var(--border);border-radius:10px;
-  padding:9px 12px;background:var(--panel);color:var(--text);
+  padding:9px 12px;
+  background:var(--panel);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:10px;
 }
 .menu-button {display:none}
+
 .hero {
-  display:grid;grid-template-columns:1.15fr .85fr;
-  gap:30px;align-items:center;padding-top:65px;padding-bottom:65px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;
+  gap:32px;
+  padding-top:65px;
+  padding-bottom:65px;
 }
-.eyebrow {color:var(--blue);font-size:.78rem;font-weight:bold;letter-spacing:2px;text-transform:uppercase}
-h1 {font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;letter-spacing:-2px;margin:15px 0}
+.eyebrow {
+  color:var(--blue);
+  font-size:.78rem;
+  font-weight:bold;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+h1 {
+  font-size:clamp(2.8rem,6vw,5rem);
+  line-height:1.03;
+  letter-spacing:-2px;
+  margin:14px 0 20px;
+}
 .gradient {
   background:linear-gradient(100deg,var(--pink),var(--purple),var(--blue));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  color:transparent;
+  -webkit-background-clip:text;
+  background-clip:text;
 }
-.hero p {color:var(--muted);font-size:1.1rem;max-width:560px}
-.actions {display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+.hero p {font-size:1.08rem;color:var(--muted)}
+.actions {display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
 .button {
-  display:inline-block;padding:11px 17px;border-radius:11px;
-  border:1px solid transparent;text-decoration:none;font-weight:bold;
+  display:inline-block;
+  padding:11px 17px;
+  border:1px solid transparent;
+  border-radius:11px;
+  text-decoration:none;
+  font-weight:bold;
   transition:transform .2s,filter .2s;
 }
-.button:hover {transform:translateY(-2px);filter:brightness(1.08)}
-.primary {background:linear-gradient(100deg,#995cff,#ff4fa3);color:#fff}
+.button:hover {transform:translateY(-2px);filter:brightness(1.1)}
+.primary {background:linear-gradient(100deg,var(--purple),var(--pink));color:white}
 .secondary {background:var(--panel);border-color:var(--border);color:var(--text)}
 .hero-art {
-  min-height:330px;display:grid;place-items:center;text-align:center;
-  border:1px solid var(--border);border-radius:28px;
+  min-height:350px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  border:1px solid var(--border);
+  border-radius:30px;
   background:
-    radial-gradient(circle at 20% 20%,rgba(255,79,163,.28),transparent 35%),
-    radial-gradient(circle at 80% 80%,rgba(70,200,255,.25),transparent 40%),
+    radial-gradient(circle at 15% 20%,rgba(255,79,163,.3),transparent 38%),
+    radial-gradient(circle at 85% 80%,rgba(69,213,255,.25),transparent 40%),
     var(--panel);
 }
-.hero-emoji {font-size:6rem;animation:float 3s ease-in-out infinite}
+.hero-art .emoji {font-size:6rem;animation:bob 3s ease-in-out infinite}
 .hero-art h2 {margin:0;font-size:2rem}
-.hero-art p {font-size:1rem;padding:0 15px}
-@keyframes float {0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-.ticker {overflow:hidden;white-space:nowrap;background:var(--panel);border-block:1px solid var(--border);padding:12px 0}
-.ticker-track {display:flex;width:max-content;gap:30px;color:var(--muted);font-weight:bold;animation:move 28s linear infinite}
-@keyframes move {to{transform:translateX(-50%)}}
-section {padding:68px 0}
-.section-heading {max-width:700px;text-align:center;margin:0 auto 32px}
-.section-heading h2 {font-size:clamp(2rem,4vw,3rem);line-height:1.15;margin:10px 0}
+.hero-art p {padding:0 20px}
+@keyframes bob {50%{transform:translateY(-10px)}}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:25px;
+}
+.stat {
+  padding:14px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+}
+.stat strong {display:block;font-size:1.4rem;color:var(--pink)}
+.stat span {font-size:.85rem;color:var(--muted)}
+
+.ticker {
+  overflow:hidden;
+  white-space:nowrap;
+  padding:13px 0;
+  border-block:1px solid var(--border);
+  background:var(--panel);
+}
+.ticker-track {
+  display:flex;
+  width:max-content;
+  gap:30px;
+  color:var(--muted);
+  font-weight:bold;
+  animation:scroll 28s linear infinite;
+}
+@keyframes scroll {to{transform:translateX(-50%)}}
+
+section {padding:70px 0}
+.section-heading {
+  max-width:700px;
+  text-align:center;
+  margin:0 auto 32px;
+}
+.section-heading h2 {
+  font-size:clamp(2rem,4vw,3rem);
+  line-height:1.15;
+  margin:10px 0;
+}
 .section-heading p {color:var(--muted);margin:0}
-.cards {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.cards {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
 .card {
-  min-width:0;padding:22px;border:1px solid var(--border);
-  border-radius:20px;background:var(--panel);
-  box-shadow:0 12px 32px rgba(0,0,0,.12);
+  min-width:0;
+  padding:22px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:var(--panel);
   transition:transform .2s,border-color .2s;
 }
 .card:hover {transform:translateY(-4px);border-color:var(--purple)}
 .card-icon {
-  width:56px;height:56px;display:grid;place-items:center;
-  border-radius:15px;background:var(--panel2);font-size:2rem;
+  width:56px;
+  height:56px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  background:var(--panel2);
+  font-size:2rem;
 }
-.card h3 {margin:14px 0 6px}
+.card h3 {margin:13px 0 6px}
 .card p {color:var(--muted)}
-.tag {font-size:.85rem;color:var(--blue);font-weight:bold}
+.tag {color:var(--blue);font-size:.85rem;font-weight:bold}
+
 input,textarea,select {
-  width:100%;padding:12px;border:1px solid var(--border);
-  border-radius:10px;background:var(--bg);color:var(--text);
+  width:100%;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg);
+  color:var(--text);
 }
-input:focus,textarea:focus,select:focus {outline:2px solid var(--purple)}
+input:focus,textarea:focus,select:focus {
+  outline:2px solid var(--purple);
+}
 textarea {min-height:100px;resize:vertical}
-.search-wrap {max-width:550px;margin:0 auto 24px}
+.search-wrap {max-width:560px;margin:0 auto 24px}
 .search-note {text-align:center;color:var(--muted);font-size:.9rem}
 .no-results {display:none;text-align:center;color:var(--muted);padding:20px}
+
 .fun-intro {
-  text-align:center;padding:24px;margin-bottom:20px;
-  border:1px solid var(--border);border-radius:22px;
-  background:linear-gradient(130deg,rgba(148,107,255,.13),rgba(255,79,163,.08));
+  padding:25px;
+  margin-bottom:20px;
+  text-align:center;
+  border:1px solid var(--border);
+  border-radius:22px;
+  background:linear-gradient(120deg,rgba(149,104,255,.14),rgba(255,79,163,.08));
 }
-.fun-intro p {color:var(--muted);margin-bottom:0}
-.fun-output {padding:13px;margin:14px 0;border-radius:12px;background:var(--panel2);min-height:62px}
+.fun-intro p {color:var(--muted)}
+.fun-output {
+  padding:14px;
+  margin:14px 0;
+  min-height:62px;
+  border-radius:12px;
+  background:var(--panel2);
+}
 .quiz-answers {display:grid;gap:9px;margin:15px 0}
 .quiz-answers button {width:100%;text-align:left}
-.quiz-answers button:disabled {opacity:.8;cursor:default}
-.feedback {min-height:30px;font-weight:bold}
+.quiz-answers button:disabled {opacity:.75}
+.feedback {min-height:28px;font-weight:bold}
 .score {color:var(--green);font-weight:bold}
-.coin-display {display:flex;flex-direction:column;gap:4px;text-align:center}
+
+.coin-display {text-align:center;display:flex;flex-direction:column;gap:4px}
 .coin-display strong {font-size:2rem;color:#ffd166}
 .coin-display small {color:var(--muted)}
-.coin-progress {margin:15px 0}
-.coin-progress p {font-size:.9rem}
-.progress-track {height:12px;overflow:hidden;border-radius:20px;background:var(--panel2)}
+.progress-track {
+  height:12px;
+  background:var(--panel2);
+  border-radius:20px;
+  overflow:hidden;
+}
 #coinProgress {
-  width:0%;height:100%;border-radius:20px;
-  background:linear-gradient(90deg,#ffd166,#ff8a4c);transition:width .25s;
+  width:0;
+  height:100%;
+  border-radius:20px;
+  background:linear-gradient(90deg,#ffd166,#ff8a4c);
+  transition:width .2s;
 }
-#coinRewardMessage {min-height:24px;color:var(--green);font-size:.9rem}
+#coinRewardMessage {color:var(--green);min-height:25px;font-size:.9rem}
+
 .halloween-box {
-  border:1px solid rgba(255,145,50,.4);border-radius:26px;
   padding:clamp(25px,5vw,45px);
-  background:radial-gradient(circle at 90% 10%,rgba(255,120,30,.24),transparent 35%),linear-gradient(120deg,#281331,#171326 65%,#101426);
+  border:1px solid rgba(255,145,50,.4);
+  border-radius:28px;
   color:white;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,120,30,.24),transparent 35%),
+    linear-gradient(120deg,#281331,#171326 65%,#101426);
 }
-.halloween-layout {display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:20px}
+.halloween-layout {
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  align-items:center;
+  gap:20px;
+}
 .halloween-box .eyebrow {color:#ffb16c}
 .halloween-box h2 {font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.1;margin:12px 0}
 .halloween-box p {color:#e1d9ec}
 .halloween-art {font-size:6rem;text-align:center}
-.details {display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}
-.detail {background:rgba(255,255,255,.1);padding:8px 11px;border-radius:10px}
-.countdown {display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}
-.countdown div {min-width:62px;text-align:center;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.09)}
+.details,.countdown {display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}
+.detail,.countdown div {
+  background:rgba(255,255,255,.1);
+  border-radius:11px;
+  padding:9px 12px;
+}
+.countdown div {text-align:center;min-width:65px}
 .countdown strong {display:block;font-size:1.4rem}
 .countdown span {font-size:.75rem;color:#e1d9ec}
+
 .agenda {display:grid;gap:14px;max-width:850px;margin:auto}
 .event {
-  display:grid;grid-template-columns:80px 1fr auto;align-items:center;
-  gap:16px;padding:18px;border:1px solid var(--border);
-  border-radius:16px;background:var(--panel);
+  display:grid;
+  grid-template-columns:75px 1fr auto;
+  align-items:center;
+  gap:15px;
+  padding:18px;
+  border:1px solid var(--border);
+  border-radius:17px;
+  background:var(--panel);
 }
-.event-date {text-align:center;background:var(--panel2);border-radius:12px;padding:8px;font-weight:bold}
+.event-date {text-align:center;background:var(--panel2);padding:8px;border-radius:12px}
 .event-date strong {display:block;font-size:1.7rem;color:var(--pink)}
-.event h3 {margin:0 0 3px}
+.event h3 {margin:0}
 .event p {margin:0;color:var(--muted)}
 .price {color:var(--green);font-weight:bold;white-space:nowrap}
 .event-link {grid-column:2/-1}
+
 .form-box {
-  max-width:740px;margin:auto;padding:clamp(20px,4vw,32px);
-  border:1px solid var(--border);border-radius:22px;background:var(--panel);
-  box-shadow:0 12px 32px rgba(0,0,0,.12);
+  max-width:740px;
+  margin:auto;
+  padding:clamp(20px,4vw,32px);
+  border:1px solid var(--border);
+  border-radius:22px;
+  background:var(--panel);
 }
-.form-box h3 {margin-top:0}
 .form-grid {display:grid;grid-template-columns:1fr 1fr;gap:15px}
 .field {display:flex;flex-direction:column;gap:7px;margin-bottom:15px}
 .field.full {grid-column:1/-1}
 label {font-weight:bold;font-size:.94rem}
 .form-note {font-size:.86rem;color:var(--muted)}
-.status {margin-top:12px;color:var(--green);font-weight:bold}
+.status {color:var(--green);font-weight:bold;margin-top:12px}
+
 .stars {display:flex;gap:8px}
 .star {border:0;background:transparent;color:#737b90;font-size:2rem;padding:0}
 .star.active {color:#ffd166}
@@ -200,32 +337,36 @@ label {font-weight:bold;font-size:.94rem}
 .review small {color:var(--muted)}
 .review-stars {color:#ffd166;letter-spacing:2px}
 .empty-reviews {grid-column:1/-1;padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:15px}
+
 .contact-grid {display:grid;grid-template-columns:.8fr 1.2fr;gap:22px;align-items:start}
 .contact-info {padding:25px;background:var(--panel);border:1px solid var(--border);border-radius:20px}
 .contact-info p {color:var(--muted)}
+
 footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
 .footer-links {display:flex;justify-content:center;flex-wrap:wrap;gap:18px}
 .footer-links a {text-decoration:none}
 .back-top {
-  position:fixed;right:20px;bottom:20px;width:45px;height:45px;
-  display:none;place-items:center;border:0;border-radius:50%;
+  position:fixed;right:18px;bottom:18px;
+  display:none;place-items:center;
+  width:45px;height:45px;border:0;border-radius:50%;
   color:white;background:linear-gradient(120deg,var(--purple),var(--pink));
-  font-size:1.3rem;z-index:50;
+  font-size:1.3rem;z-index:30;
 }
 .back-top.visible {display:grid}
 .hidden {display:none!important}
+
 @media(max-width:950px) {
-  .nav-links {gap:9px}
+  .nav-links {gap:8px}
   .nav-links a {font-size:.8rem}
   .hero {grid-template-columns:1fr}
-  .hero-art {min-height:260px}
   .contact-grid {grid-template-columns:1fr}
 }
 @media(max-width:760px) {
   .menu-button {display:block}
   .nav-links {
-    display:none;position:absolute;top:72px;left:0;right:0;
-    padding:12px 4%;background:var(--bg);border-bottom:1px solid var(--border);
+    display:none;position:absolute;top:73px;left:0;right:0;
+    padding:12px 4%;background:var(--bg);
+    border-bottom:1px solid var(--border);
     flex-direction:column;align-items:stretch;gap:0;
   }
   .nav-links.open {display:flex}
@@ -233,7 +374,7 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
   .cards {grid-template-columns:repeat(2,minmax(0,1fr))}
   .halloween-layout {grid-template-columns:1fr}
   .halloween-art {font-size:4rem}
-  .event {grid-template-columns:68px 1fr}
+  .event {grid-template-columns:65px 1fr}
   .event .price {grid-column:2}
   .event .event-link {grid-column:1/-1}
   .review-list {grid-template-columns:1fr}
@@ -241,10 +382,11 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
 @media(max-width:480px) {
   .cards,.form-grid {grid-template-columns:1fr}
   .field.full {grid-column:auto}
-  .hero {padding-top:42px}
-  h1 {letter-spacing:-1px}
+  .hero {padding-top:40px}
   section {padding:50px 0}
-  .hero-emoji {font-size:5rem}
+  .stats {gap:6px}
+  .stat {padding:9px}
+  .stat span {font-size:.75rem}
   .countdown div {flex:1}
 }
 @media(prefers-reduced-motion:reduce) {
@@ -255,7 +397,7 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
 
 <body>
 <header>
-  <nav class="container" aria-label="Hoofdnavigatie">
+  <nav class="container">
     <a href="#home" class="logo">Mini<span>Praathuis</span> 🏡</a>
     <div class="nav-links" id="navLinks">
       <a href="#home">Home</a>
@@ -268,7 +410,7 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
     </div>
     <div class="nav-actions">
       <button class="icon-button" id="themeButton" type="button" aria-label="Wissel thema">☀️</button>
-      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <button class="menu-button" id="menuButton" type="button" aria-expanded="false">☰</button>
     </div>
   </nav>
 </header>
@@ -277,64 +419,69 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
 <section class="container hero" id="home">
   <div>
     <div class="eyebrow">Welkom bij MiniPraathuis</div>
-    <h1>Samen maken we het <span class="gradient">gezellig!</span></h1>
-    <p>Ontdek creatieve activiteiten, leuke evenementen en interactieve spelletjes. Bij MiniPraathuis is er ruimte voor gezelligheid en nieuwe ideeën!</p>
+    <h1>Jouw plek voor <span class="gradient">plezier!</span></h1>
+    <p>Ontdek activiteiten, speel spelletjes, verzamel muntjes en bekijk onze evenementen. Er is altijd wel iets leuks te ontdekken!</p>
     <div class="actions">
       <a class="button primary" href="#activiteiten">Ontdek activiteiten ✨</a>
-      <a class="button secondary" href="#funzone">Naar de Fun Zone 🎮</a>
+      <a class="button secondary" href="#funzone">Speel de games 🎮</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>🎨</strong><span>Creatief</span></div>
+      <div class="stat"><strong>🎮</strong><span>Interactief</span></div>
+      <div class="stat"><strong>🏡</strong><span>Gezellig</span></div>
     </div>
   </div>
   <div class="hero-art">
     <div>
-      <div class="hero-emoji">🏡🎨</div>
+      <div class="emoji">🏡✨</div>
       <h2>Welkom bij ons!</h2>
-      <p>Nieuwe ideeën, leuke activiteiten en gezelligheid.</p>
+      <p>Nieuwe ideeën beginnen hier.</p>
     </div>
   </div>
 </section>
 
 <div class="ticker">
   <div class="ticker-track">
-    <span>🎨 Creativiteit</span><span>💬 Gezelligheid</span><span>🎉 Evenementen</span><span>🏡 MiniPraathuis</span><span>🎮 Fun Zone</span><span>🎃 Halloween</span>
-    <span>🎨 Creativiteit</span><span>💬 Gezelligheid</span><span>🎉 Evenementen</span><span>🏡 MiniPraathuis</span><span>🎮 Fun Zone</span><span>🎃 Halloween</span>
+    <span>🎨 Creativiteit</span><span>🎮 Fun Zone</span><span>🎉 Evenementen</span><span>🪙 Muntjes verdienen</span><span>🎃 Halloween</span><span>🏡 MiniPraathuis</span>
+    <span>🎨 Creativiteit</span><span>🎮 Fun Zone</span><span>🎉 Evenementen</span><span>🪙 Muntjes verdienen</span><span>🎃 Halloween</span><span>🏡 MiniPraathuis</span>
   </div>
 </div>
 
 <section id="activiteiten">
   <div class="container">
     <div class="section-heading">
-      <div class="eyebrow">Ontdek wat er mogelijk is</div>
+      <div class="eyebrow">Ontdek en probeer</div>
       <h2>Onze activiteiten</h2>
-      <p>Zoek een activiteit die je leuk lijkt.</p>
+      <p>Zoek een activiteit of kies je favoriet.</p>
     </div>
     <div class="search-wrap">
-      <input type="search" id="activitySearch" placeholder="🔎 Zoek een activiteit..." aria-label="Zoek activiteiten">
-      <p class="search-note" id="searchCount">Bekijk onze activiteiten.</p>
+      <input id="activitySearch" type="search" placeholder="🔎 Zoek een activiteit..." aria-label="Zoek activiteiten">
+      <p class="search-note" id="searchCount">6 activiteiten beschikbaar.</p>
     </div>
     <div class="cards" id="activityCards">
       <article class="card activity-card" data-search="creatief knutselen tekenen schilderen kunst">
         <div class="card-icon">🎨</div><h3>Creatieve middag</h3>
-        <p>Knutsel, teken, schilder en ontdek je eigen ideeën.</p><span class="tag">Creativiteit</span>
+        <p>Knutsel, teken en ontdek nieuwe ideeën.</p><span class="tag">Creativiteit</span>
       </article>
-      <article class="card activity-card" data-search="sport spel voetbal bewegen buiten">
+      <article class="card activity-card" data-search="sport spel voetbal buiten bewegen">
         <div class="card-icon">⚽</div><h3>Sport &amp; spel</h3>
-        <p>Speel samen leuke spellen en bedenk sportieve uitdagingen.</p><span class="tag">Actief bezig zijn</span>
+        <p>Beweeg, speel en verzin leuke uitdagingen.</p><span class="tag">Actief</span>
       </article>
-      <article class="card activity-card" data-search="bordspel kaartspel dobbelspel spelletjes">
+      <article class="card activity-card" data-search="bordspel kaartspel dobbelspel">
         <div class="card-icon">🎲</div><h3>Spelletjes</h3>
-        <p>Speel bordspellen, kaartspellen of bedenk je eigen spel.</p><span class="tag">Samen spelen</span>
+        <p>Speel een bordspel of verzin je eigen spel.</p><span class="tag">Samen spelen</span>
       </article>
-      <article class="card activity-card" data-search="praten ontmoeten ideeën gesprek">
+      <article class="card activity-card" data-search="praten ontmoeten gesprek ideeën">
         <div class="card-icon">💬</div><h3>Praatmiddag</h3>
-        <p>Wissel ideeën uit en maak gezellig een praatje.</p><span class="tag">Ontmoeten</span>
+        <p>Wissel ideeën uit en maak een gezellig praatje.</p><span class="tag">Ontmoeten</span>
       </article>
-      <article class="card activity-card" data-search="film bioscoop kijken filmavond">
+      <article class="card activity-card" data-search="film kijken filmavond bioscoop">
         <div class="card-icon">🎬</div><h3>Filmavond</h3>
         <p>Geniet samen van een gezellige filmactiviteit.</p><span class="tag">Ontspanning</span>
       </article>
-      <article class="card activity-card" data-search="feest evenement halloween speciale dagen">
+      <article class="card activity-card" data-search="feest evenement speciale dagen halloween">
         <div class="card-icon">🎉</div><h3>Speciale evenementen</h3>
-        <p>Bekijk de agenda voor bijzondere dagen en thema's.</p><span class="tag">Speciale dagen</span>
+        <p>Bekijk de agenda voor bijzondere dagen.</p><span class="tag">Evenementen</span>
       </article>
     </div>
     <div class="no-results" id="noActivities">Geen activiteiten gevonden. Probeer een ander zoekwoord.</div>
@@ -344,28 +491,27 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
 <section id="funzone">
   <div class="container">
     <div class="section-heading">
-      <div class="eyebrow">Tijd voor plezier</div>
-      <h2>De MiniPraathuis Fun Zone! 🎮</h2>
-      <p>Test je kennis, verzamel muntjes en probeer een leuke uitdaging.</p>
+      <div class="eyebrow">Spelen maar!</div>
+      <h2>De Fun Zone 🎮</h2>
+      <p>Speel, leer, verdien muntjes en ontgrendel een badge.</p>
     </div>
     <div class="fun-intro">
-      <div style="font-size:2.5rem">🎯 🧠 🏆 🪙</div>
-      <h3>Wat ga jij proberen?</h3>
-      <p>De spelletjes werken direct op de website. Je hoeft niets te installeren.</p>
+      <div style="font-size:2.5rem">🎯 🧠 🪙 🏆</div>
+      <h3>Welkom in de Fun Zone!</h3>
+      <p>Alle spelletjes werken direct op deze pagina.</p>
     </div>
-
     <div class="cards">
       <article class="card">
         <div class="card-icon">🎡</div>
         <h3>Activiteitenkiezer</h3>
-        <p>Geen idee wat je wilt doen? Laat de website kiezen!</p>
-        <div class="fun-output" id="activityResult" aria-live="polite">Klik op de knop voor een idee.</div>
-        <button class="button primary" id="activityButton" type="button">Kies een activiteit!</button>
+        <p>Laat de website een idee voor je kiezen.</p>
+        <div class="fun-output" id="activityResult">Klik om een idee te ontdekken.</div>
+        <button class="button primary" id="activityButton" type="button">Kies voor mij!</button>
       </article>
 
       <article class="card">
         <div class="card-icon">🧠</div>
-        <h3>De MiniQuiz</h3>
+        <h3>MiniQuiz</h3>
         <p id="quizQuestion">Hoeveel dagen heeft een week?</p>
         <div class="quiz-answers" id="quizAnswers"></div>
         <div class="feedback" id="quizFeedback" aria-live="polite"></div>
@@ -375,16 +521,16 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
 
       <article class="card">
         <div class="card-icon">🏆</div>
-        <h3>Jouw uitdaging</h3>
-        <p>Ontdek een creatieve opdracht voor jezelf of samen met anderen.</p>
-        <div class="fun-output" id="challengeText" aria-live="polite">Ben jij klaar voor een uitdaging?</div>
-        <button class="button primary" id="challengeButton" type="button">Geef me een uitdaging!</button>
+        <h3>Uitdaging van de dag</h3>
+        <p>Ontdek een creatieve opdracht.</p>
+        <div class="fun-output" id="challengeText">Klaar voor een uitdaging?</div>
+        <button class="button primary" id="challengeButton" type="button">Nieuwe uitdaging</button>
       </article>
 
       <article class="card">
         <div class="card-icon">🪙</div>
-        <h3>MiniPraathuis Muntjesgame</h3>
-        <p>Klik om muntjes te verdienen en speel een badge vrij.</p>
+        <h3>Muntjesgame</h3>
+        <p>Verdien muntjes en speel een badge vrij.</p>
         <div class="fun-output coin-display">
           <span>Jouw muntjes</span>
           <strong id="coinCount">0 🪙</strong>
@@ -392,10 +538,10 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
         </div>
         <button class="button primary" id="coinButton" type="button">Verdien muntjes! ✨</button>
         <div class="coin-progress">
-          <p>Volgende beloning: <strong id="coinGoal">25 🪙</strong></p>
+          <p>Doel: <strong id="coinGoal">25 🪙</strong></p>
           <div class="progress-track"><div id="coinProgress"></div></div>
         </div>
-        <button class="button secondary" id="coinReward" type="button">Bekijk beloningen 🎁</button>
+        <button class="button secondary" id="coinReward" type="button">Vrijspeel beloning 🎁</button>
         <p id="coinRewardMessage" aria-live="polite"></p>
       </article>
     </div>
@@ -409,7 +555,7 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
         <div>
           <div class="eyebrow">🎃 Speciaal evenement</div>
           <h2>Halloween bij MiniPraathuis</h2>
-          <p>Vier Halloween met MiniPraathuis! Bekijk de datum en meld je aan via het formulier hieronder.</p>
+          <p>Vier Halloween met MiniPraathuis. Bekijk de informatie en meld je aan!</p>
           <div class="countdown" id="countdown" aria-live="polite">
             <div><strong id="days">--</strong><span>Dagen</span></div>
             <div><strong id="hours">--</strong><span>Uren</span></div>
@@ -421,9 +567,9 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
             <div class="detail">🕡 18:30 uur</div>
             <div class="detail">🎟️ € 2,50 per persoon</div>
           </div>
-          <a class="button primary" href="#halloween-aanmelden">Aanmelden voor Halloween 🎃</a>
+          <a class="button primary" href="#halloween-aanmelden">Aanmelden 🎃</a>
         </div>
-        <div class="halloween-art" aria-hidden="true">🎃👻🦇</div>
+        <div class="halloween-art">🎃👻🦇</div>
       </div>
     </div>
   </div>
@@ -434,7 +580,7 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
     <div class="section-heading">
       <div class="eyebrow">Zet het in je agenda</div>
       <h2>De agenda 📅</h2>
-      <p>Bekijk de evenementen die op de website staan.</p>
+      <p>Evenementen die op de website vermeld staan.</p>
     </div>
     <div class="agenda">
       <article class="event">
@@ -456,14 +602,14 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
   <div class="container">
     <div class="section-heading">
       <div class="eyebrow">Doe mee</div>
-      <h2>Aanmelden voor Halloween</h2>
+      <h2>Halloween-aanmelding</h2>
       <p>Vul je gegevens in om je aanmelding te versturen.</p>
     </div>
     <form class="form-box" action="https://formspree.io/f/mbgdorbq" method="POST">
-      <h3>🎃 Halloween-aanmelding</h3>
+      <h3>🎃 Meld je aan</h3>
       <p class="form-note">30 oktober 2026 · 18:30 uur · € 2,50 per persoon</p>
       <input type="hidden" name="_subject" value="Halloween-aanmelding MiniPraathuis">
-      <input type="hidden" name="Evenement" value="Halloween - 30 oktober 2026 om 18:30">
+      <input type="hidden" name="Evenement" value="Halloween 30 oktober 2026">
       <div class="form-grid">
         <div class="field">
           <label for="halloweenNaam">Naam *</label>
@@ -485,7 +631,7 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
         </div>
       </div>
       <button class="button primary" type="submit">Verstuur aanmelding</button>
-      <p class="form-note">De aanmelding wordt via Formspree verstuurd. Controleer na verzending of de inzending is aangekomen.</p>
+      <p class="form-note">Controleer na verzending of je aanmelding is aangekomen.</p>
     </form>
   </div>
 </section>
@@ -505,7 +651,7 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
       </div>
       <div class="field">
         <label>Beoordeling *</label>
-        <div class="stars" id="starPicker">
+        <div class="stars">
           <button class="star" type="button" data-rating="1" aria-label="1 ster">★</button>
           <button class="star" type="button" data-rating="2" aria-label="2 sterren">★</button>
           <button class="star" type="button" data-rating="3" aria-label="3 sterren">★</button>
@@ -520,7 +666,7 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
       </div>
       <button class="button primary" type="submit">Plaats recensie</button>
       <div class="status" id="reviewStatus" role="status"></div>
-      <p class="form-note">Recensies worden alleen in deze browser opgeslagen, niet automatisch gedeeld met andere bezoekers.</p>
+      <p class="form-note">Recensies worden in deze browser opgeslagen en niet automatisch met andere bezoekers gedeeld.</p>
     </form>
     <div class="review-list" id="reviewList" aria-live="polite"></div>
   </div>
@@ -538,7 +684,7 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
         <h3>🏡 MiniPraathuis</h3>
         <p>Neem contact op met vragen over activiteiten en evenementen.</p>
         <p><strong>Adres:</strong><br>Doelstraat 4</p>
-        <p>Controleer de locatie en eventuele openingstijden voordat je langskomt.</p>
+        <p>Controleer de locatie en openingstijden voordat je langskomt.</p>
       </div>
       <form class="form-box" action="https://formspree.io/f/mbgdorbq" method="POST">
         <h3>Stuur een bericht</h3>
@@ -553,7 +699,7 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
         </div>
         <div class="field">
           <label for="contactBericht">Bericht *</label>
-          <textarea id="contactBericht" name="Bericht" required placeholder="Typ hier je bericht..."></textarea>
+          <textarea id="contactBericht" name="Bericht" required placeholder="Typ je bericht..."></textarea>
         </div>
         <button class="button primary" type="submit">Verstuur bericht</button>
       </form>
@@ -574,31 +720,28 @@ footer {padding:30px 0;border-top:1px solid var(--border);text-align:center;colo
 <button class="back-top" id="backTop" type="button" aria-label="Terug naar boven">↑</button>
 
 <script>
-// Navigatie
+// Mobiel menu
 const menuButton = document.getElementById("menuButton");
 const navLinks = document.getElementById("navLinks");
-
 menuButton.addEventListener("click", () => {
   const open = navLinks.classList.toggle("open");
   menuButton.setAttribute("aria-expanded", String(open));
 });
-navLinks.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    menuButton.setAttribute("aria-expanded", "false");
-  });
-});
+navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+  navLinks.classList.remove("open");
+  menuButton.setAttribute("aria-expanded", "false");
+}));
 
-// Thema
+// Thema wisselen
 const themeButton = document.getElementById("themeButton");
 function setTheme(theme) {
   document.body.classList.toggle("light", theme === "light");
   themeButton.textContent = theme === "light" ? "🌙" : "☀️";
-  try { localStorage.setItem("minipraathuis_theme", theme); } catch (error) {}
+  try { localStorage.setItem("mp_theme", theme); } catch (error) {}
 }
-let savedTheme = "dark";
-try { savedTheme = localStorage.getItem("minipraathuis_theme") || "dark"; } catch (error) {}
-setTheme(savedTheme);
+let theme = "dark";
+try { theme = localStorage.getItem("mp_theme") || "dark"; } catch (error) {}
+setTheme(theme);
 themeButton.addEventListener("click", () => {
   setTheme(document.body.classList.contains("light") ? "dark" : "light");
 });
@@ -607,27 +750,25 @@ document.getElementById("year").textContent = new Date().getFullYear();
 // Activiteiten zoeken
 const activitySearch = document.getElementById("activitySearch");
 const activityCards = [...document.querySelectorAll(".activity-card")];
-const searchCount = document.getElementById("searchCount");
-const noActivities = document.getElementById("noActivities");
-
 activitySearch.addEventListener("input", () => {
   const query = activitySearch.value.trim().toLocaleLowerCase("nl");
   let visible = 0;
   activityCards.forEach(card => {
-    const content = (card.innerText + " " + card.dataset.search).toLocaleLowerCase("nl");
-    const match = content.includes(query);
+    const text = (card.innerText + " " + card.dataset.search).toLocaleLowerCase("nl");
+    const match = text.includes(query);
     card.classList.toggle("hidden", !match);
     if (match) visible++;
   });
-  searchCount.textContent = visible + (visible === 1 ? " activiteit gevonden." : " activiteiten gevonden.");
-  noActivities.style.display = visible === 0 ? "block" : "none";
+  document.getElementById("searchCount").textContent =
+    visible + (visible === 1 ? " activiteit gevonden." : " activiteiten gevonden.");
+  document.getElementById("noActivities").style.display = visible ? "none" : "block";
 });
 
 // Activiteitenkiezer
-const activities = [
+const activityIdeas = [
   "🎨 Maak een creatieve tekening!",
-  "🎲 Speel samen een bordspel!",
-  "⚽ Bedenk een leuke sportuitdaging!",
+  "🎲 Speel een bordspel!",
+  "⚽ Bedenk een sportuitdaging!",
   "🧩 Los samen een puzzel op!",
   "💬 Bedenk drie gespreksonderwerpen!",
   "🎭 Verzin een grappig toneelstukje!",
@@ -637,18 +778,18 @@ const activities = [
 ];
 document.getElementById("activityButton").addEventListener("click", () => {
   document.getElementById("activityResult").textContent =
-    activities[Math.floor(Math.random() * activities.length)];
+    activityIdeas[Math.floor(Math.random() * activityIdeas.length)];
 });
 
-// MiniQuiz
+// Quiz
 const questions = [
-  {question:"Hoeveel dagen heeft een week?",answers:[["5 dagen",false],["7 dagen",true],["10 dagen",false]],explanation:"Een week heeft 7 dagen!"},
-  {question:"Welke planeet noemen we de rode planeet?",answers:[["Mars",true],["Venus",false],["Jupiter",false]],explanation:"Mars is de rode planeet."},
-  {question:"Hoeveel minuten zitten er in een uur?",answers:[["30 minuten",false],["60 minuten",true],["100 minuten",false]],explanation:"Een uur heeft 60 minuten."},
-  {question:"Welk dier kwaakt?",answers:[["Een kikker",true],["Een paard",false],["Een schaap",false]],explanation:"Kikkers kunnen kwaken."},
-  {question:"Welke kleur krijg je door blauw en geel te mengen?",answers:[["Paars",false],["Groen",true],["Oranje",false]],explanation:"Blauw en geel geven groen."},
-  {question:"Hoeveel poten heeft een spin?",answers:[["6",false],["8",true],["10",false]],explanation:"Een spin heeft 8 poten."},
-  {question:"Wat is de hoofdstad van Nederland?",answers:[["Rotterdam",false],["Utrecht",false],["Amsterdam",true]],explanation:"Amsterdam is de hoofdstad."}
+  {q:"Hoeveel dagen heeft een week?",a:[["5 dagen",false],["7 dagen",true],["10 dagen",false]]},
+  {q:"Welke planeet noemen we de rode planeet?",a:[["Mars",true],["Venus",false],["Jupiter",false]]},
+  {q:"Hoeveel minuten zitten er in een uur?",a:[["30",false],["60",true],["100",false]]},
+  {q:"Welk dier kwaakt?",a:[["Een kikker",true],["Een paard",false],["Een schaap",false]]},
+  {q:"Welke kleur krijg je door blauw en geel te mengen?",a:[["Paars",false],["Groen",true],["Oranje",false]]},
+  {q:"Hoeveel poten heeft een spin?",a:[["6",false],["8",true],["10",false]]},
+  {q:"Wat is de hoofdstad van Nederland?",a:[["Rotterdam",false],["Utrecht",false],["Amsterdam",true]]}
 ];
 let questionIndex = 0;
 let score = 0;
@@ -656,34 +797,33 @@ let answered = false;
 
 function showQuestion() {
   const question = questions[questionIndex];
-  document.getElementById("quizQuestion").textContent = (questionIndex + 1) + ". " + question.question;
+  document.getElementById("quizQuestion").textContent =
+    (questionIndex + 1) + ". " + question.q;
   document.getElementById("quizFeedback").textContent = "";
   document.getElementById("nextQuestion").textContent = "Volgende vraag";
-  const answersBox = document.getElementById("quizAnswers");
-  answersBox.replaceChildren();
+  const box = document.getElementById("quizAnswers");
+  box.replaceChildren();
   answered = false;
 
-  question.answers.forEach(([text, correct]) => {
+  question.a.forEach(([answer, correct]) => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "button secondary";
-    button.textContent = text;
+    button.textContent = answer;
     button.addEventListener("click", () => {
       if (answered) return;
       answered = true;
-      if (correct) {
-        score++;
-        document.getElementById("quizFeedback").textContent = "✅ Goed gedaan! " + question.explanation;
-      } else {
-        document.getElementById("quizFeedback").textContent =
-          "❌ Het juiste antwoord is: " + question.answers.find(answer => answer[1])[0];
-      }
+      const correctAnswer = question.a.find(item => item[1])[0];
+      document.getElementById("quizFeedback").textContent = correct
+        ? "✅ Goed gedaan!"
+        : "❌ Het juiste antwoord is: " + correctAnswer;
+      if (correct) score++;
       document.getElementById("quizScore").textContent = score;
-      answersBox.querySelectorAll("button").forEach(item => item.disabled = true);
+      box.querySelectorAll("button").forEach(b => b.disabled = true);
       document.getElementById("nextQuestion").textContent =
         questionIndex === questions.length - 1 ? "Opnieuw spelen" : "Volgende vraag";
     });
-    answersBox.appendChild(button);
+    box.appendChild(button);
   });
 }
 document.getElementById("nextQuestion").addEventListener("click", () => {
@@ -695,22 +835,20 @@ document.getElementById("nextQuestion").addEventListener("click", () => {
     questionIndex = 0;
     score = 0;
     document.getElementById("quizScore").textContent = "0";
-  } else {
-    questionIndex++;
-  }
+  } else questionIndex++;
   showQuestion();
 });
 showQuestion();
 
-// Willekeurige uitdagingen
+// Uitdagingen
 const challenges = [
   "🎨 Verzin een nieuw logo voor MiniPraathuis.",
   "🧠 Bedenk zelf een quizvraag.",
   "🎲 Verzin een nieuw gezelschapsspel.",
   "🌱 Bedenk een idee om de buurt gezelliger te maken.",
   "✍️ Verzin een grappige slogan.",
-  "🎉 Bedenk een thema voor een nieuw evenement.",
-  "💡 Verzin een nieuwe activiteit voor de agenda.",
+  "🎉 Bedenk een thema voor een evenement.",
+  "💡 Verzin een nieuwe activiteit.",
   "🧩 Bedenk een raadsel voor iemand anders.",
   "📚 Verzin samen een kort verhaal."
 ];
@@ -720,44 +858,38 @@ document.getElementById("challengeButton").addEventListener("click", () => {
 });
 
 // Muntjesgame
-const coinCount = document.getElementById("coinCount");
-const coinMessage = document.getElementById("coinMessage");
-const coinButton = document.getElementById("coinButton");
-const coinProgress = document.getElementById("coinProgress");
-const coinReward = document.getElementById("coinReward");
-const coinRewardMessage = document.getElementById("coinRewardMessage");
-const goal = 25;
+const coinGoal = 25;
 let coins = 0;
 let rewardClaimed = false;
 
-function updateCoinGame() {
-  coinCount.textContent = coins + " 🪙";
-  document.getElementById("coinGoal").textContent = goal + " 🪙";
-  coinProgress.style.width = Math.min((coins / goal) * 100, 100) + "%";
-  coinMessage.textContent = coins >= goal
-    ? "🎉 Je hebt genoeg voor de beloning!"
-    : "Nog " + (goal - coins) + " muntjes tot je beloning!";
+function updateCoins() {
+  document.getElementById("coinCount").textContent = coins + " 🪙";
+  document.getElementById("coinGoal").textContent = coinGoal + " 🪙";
+  document.getElementById("coinProgress").style.width =
+    Math.min(coins / coinGoal * 100, 100) + "%";
+  document.getElementById("coinMessage").textContent =
+    coins >= coinGoal ? "🎉 Je kunt je beloning vrijspelen!" :
+    "Nog " + (coinGoal - coins) + " muntjes tot je beloning!";
 }
-coinButton.addEventListener("click", () => {
+document.getElementById("coinButton").addEventListener("click", () => {
   const earned = Math.floor(Math.random() * 5) + 1;
   coins += earned;
-  coinMessage.textContent = "✨ Je verdient " + earned + " muntjes!";
-  updateCoinGame();
+  document.getElementById("coinMessage").textContent = "✨ Je verdient " + earned + " muntjes!";
+  updateCoins();
 });
-coinReward.addEventListener("click", () => {
+document.getElementById("coinReward").addEventListener("click", () => {
+  const message = document.getElementById("coinRewardMessage");
   if (rewardClaimed) {
-    coinRewardMessage.textContent = "Je hebt de beloning al vrijgespeeld. 🎁";
-    return;
+    message.textContent = "Je hebt de badge al vrijgespeeld! 🏆";
+  } else if (coins < coinGoal) {
+    message.textContent = "Je hebt nog " + (coinGoal - coins) + " muntjes nodig.";
+  } else {
+    rewardClaimed = true;
+    message.textContent = "🏆 Gefeliciteerd! Je hebt de MiniPraathuis-badge vrijgespeeld!";
+    document.getElementById("coinReward").textContent = "Badge vrijgespeeld 🏆";
   }
-  if (coins < goal) {
-    coinRewardMessage.textContent = "Je hebt nog " + (goal - coins) + " muntjes nodig!";
-    return;
-  }
-  rewardClaimed = true;
-  coinRewardMessage.textContent = "🏆 Gefeliciteerd! Je hebt de MiniPraathuis-badge vrijgespeeld!";
-  coinReward.textContent = "Badge vrijgespeeld 🏆";
 });
-updateCoinGame();
+updateCoins();
 
 // Halloween-aftelklok
 const halloweenDate = new Date(2026, 9, 30, 18, 30, 0);
@@ -768,56 +900,48 @@ function updateCountdown() {
     countdown.innerHTML = "<div><strong>🎃</strong><span>De datum is aangebroken of voorbij!</span></div>";
     return;
   }
-  const days = Math.floor(difference / 86400000);
-  const hours = Math.floor((difference % 86400000) / 3600000);
-  const minutes = Math.floor((difference % 3600000) / 60000);
-  const seconds = Math.floor((difference % 60000) / 1000);
-  document.getElementById("days").textContent = days;
-  document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-  document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-  document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+  document.getElementById("days").textContent = Math.floor(difference / 86400000);
+  document.getElementById("hours").textContent = String(Math.floor(difference % 86400000 / 3600000)).padStart(2, "0");
+  document.getElementById("minutes").textContent = String(Math.floor(difference % 3600000 / 60000)).padStart(2, "0");
+  document.getElementById("seconds").textContent = String(Math.floor(difference % 60000 / 1000)).padStart(2, "0");
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// Recensies lokaal opslaan
+// Recensies: lokaal opgeslagen
 let selectedRating = 0;
 const starButtons = [...document.querySelectorAll(".star")];
 const reviewForm = document.getElementById("reviewForm");
 const reviewList = document.getElementById("reviewList");
-const reviewStatus = document.getElementById("reviewStatus");
-const reviewKey = "minipraathuis_reviews_v3";
+const reviewKey = "mp_reviews_v4";
 
+function loadReviews() {
+  try {
+    const data = JSON.parse(localStorage.getItem(reviewKey) || "[]");
+    return Array.isArray(data) ? data : [];
+  } catch (error) { return []; }
+}
 function updateStars() {
   starButtons.forEach(button => {
     const active = Number(button.dataset.rating) <= selectedRating;
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(Number(button.dataset.rating) === selectedRating));
   });
-  document.getElementById("ratingText").textContent = selectedRating
-    ? selectedRating + " van de 5 sterren gekozen."
-    : "Kies 1 tot 5 sterren.";
+  document.getElementById("ratingText").textContent =
+    selectedRating ? selectedRating + " van de 5 sterren gekozen." : "Kies 1 tot 5 sterren.";
 }
 starButtons.forEach(button => button.addEventListener("click", () => {
   selectedRating = Number(button.dataset.rating);
   updateStars();
 }));
 
-function loadReviews() {
-  try {
-    const reviews = JSON.parse(localStorage.getItem(reviewKey) || "[]");
-    return Array.isArray(reviews) ? reviews : [];
-  } catch (error) {
-    return [];
-  }
-}
 function renderReviews() {
   reviewList.replaceChildren();
   const reviews = loadReviews();
   if (!reviews.length) {
     const empty = document.createElement("div");
     empty.className = "empty-reviews";
-    empty.textContent = "Er zijn nog geen recensies. Wees de eerste!";
+    empty.textContent = "Nog geen recensies. Wees de eerste!";
     reviewList.appendChild(empty);
     return;
   }
@@ -841,23 +965,33 @@ reviewForm.addEventListener("submit", event => {
   event.preventDefault();
   const name = document.getElementById("reviewNaam").value.trim();
   const message = document.getElementById("reviewTekst").value.trim();
+  const status = document.getElementById("reviewStatus");
+
   if (!name || !message || selectedRating < 1) {
-    reviewStatus.textContent = "Vul je naam, beoordeling en recensie in.";
+    status.textContent = "Vul je naam, beoordeling en recensie in.";
     return;
   }
+
   const reviews = loadReviews();
-  reviews.push({name, message, rating:selectedRating, date:new Date().toLocaleDateString("nl-NL")});
+  reviews.push({
+    name,
+    message,
+    rating:selectedRating,
+    date:new Date().toLocaleDateString("nl-NL")
+  });
+
   try {
     localStorage.setItem(reviewKey, JSON.stringify(reviews));
   } catch (error) {
-    reviewStatus.textContent = "Opslaan is niet gelukt in deze browser.";
+    status.textContent = "Opslaan is niet gelukt in deze browser.";
     return;
   }
+
   reviewForm.reset();
   selectedRating = 0;
   updateStars();
   renderReviews();
-  reviewStatus.textContent = "Bedankt! Je recensie is in deze browser geplaatst.";
+  status.textContent = "Bedankt! Je recensie staat op deze browser.";
 });
 updateStars();
 renderReviews();
@@ -868,7 +1002,7 @@ window.addEventListener("scroll", () => {
   backTop.classList.toggle("visible", window.scrollY > 450);
 }, {passive:true});
 backTop.addEventListener("click", () => {
-  window.scrollTo({top:0, behavior:"smooth"});
+  window.scrollTo({top:0,behavior:"smooth"});
 });
 </script>
 </body>
