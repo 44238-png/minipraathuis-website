@@ -1,573 +1,252 @@
-```html
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MiniPraathuis 🎉</title>
-<style>
-:root {
-  --bg: #100b1b;
-  --card: #21152e;
-  --text: #fff;
-  --muted: #d8cce4;
-  --accent: #ff8b36;
-  --pink: #ff5c9b;
-  --border: #593768;
-}
-body.light {
-  --bg: #fff6ed;
-  --card: #ffffff;
-  --text: #321d40;
-  --muted: #67556f;
-  --border: #ead4ed;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  transition: background .2s, color .2s;
-}
-header {
-  padding: 30px 18px;
-  text-align: center;
-  background: linear-gradient(120deg,#34164b,#6b2472,#e85b73);
-}
-header h1 { margin: 0; font-size: clamp(30px,5vw,48px); }
-header p { margin: 8px 0 0; }
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 12px;
-  background: #180e23;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-nav a, nav button {
-  color: white;
-  text-decoration: none;
-  padding: 8px 12px;
-  border: 0;
-  border-radius: 9px;
-  background: #382044;
-  font: inherit;
-  cursor: pointer;
-}
-nav a:hover, nav button:hover { background: #69336f; }
-main { max-width: 1100px; margin: auto; padding: 20px; }
-section { padding: 28px 0; scroll-margin-top: 80px; }
-h2 { font-size: 30px; margin: 0 0 15px; }
-h3 { margin-top: 0; }
-p { color: var(--muted); }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 18px;
-}
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 8px 25px #0002;
-}
-.emoji { font-size: 38px; }
-button, .btn {
-  background: linear-gradient(110deg,var(--accent),var(--pink));
-  color: #26132e;
-  border: 0;
-  border-radius: 10px;
-  padding: 11px 16px;
-  font: inherit;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: none;
-}
-button:hover, .btn:hover { filter: brightness(1.08); }
-input, select, textarea {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin: 6px 0 15px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--bg);
-  color: var(--text);
-  font: inherit;
-}
-label { font-weight: bold; }
-.badge {
-  display: inline-block;
-  border: 2px solid #ffd75e;
-  background: linear-gradient(135deg,#fff0a1,#f4b82e,#ffdf72);
-  color: #4b3000;
-  border-radius: 14px;
-  padding: 9px 15px;
-  font-weight: 900;
-  box-shadow: 0 0 20px #ffcf4d55;
-}
-.progress {
-  height: 13px;
-  background: #45314f;
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 12px 0;
-}
-#progressFill {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg,#ff8b36,#ffe16b);
-  transition: width .3s;
-}
-.notice { font-size: 13px; }
-footer {
-  text-align: center;
-  padding: 30px 15px;
-  background: #180e23;
-  color: #e9d8f2;
-}
-.old-halloween {
-  padding: 30px 0;
-  background:
-    radial-gradient(ellipse at top,#44204f 0%,transparent 70%);
-}
-.halloween-card, .halloween-form {
-  width: 100%;
-  margin: 0 auto 24px;
-  padding: 28px;
-  border: 1px solid #743b78;
-  border-radius: 24px;
-  background: linear-gradient(145deg,#291735,#171020);
-  box-shadow: 0 12px 40px #0005;
-  color: white;
-}
-.halloween-card { text-align: center; border-top: 4px solid #ff8b36; }
-.halloween-tag {
-  display: inline-block;
-  padding: 7px 14px;
-  border-radius: 30px;
-  background: #ff8b36;
-  color: #24112c;
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 1px;
-}
-.halloween-decor { margin: 18px 0; font-size: 36px; letter-spacing: 7px; }
-.halloween-card h2, .halloween-form h3 { color: #ffab54; }
-.halloween-details {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
-  gap: 12px;
-  margin: 24px 0;
-}
-.halloween-detail {
-  padding: 16px 10px;
-  border-radius: 15px;
-  background: #382242;
-  border: 1px solid #694074;
-}
-.halloween-detail span { font-size: 26px; }
-.halloween-detail strong { display: block; color: #ffb15e; }
-.halloween-detail p { margin: 4px 0 0; color: white; }
-.halloween-form label { display: block; margin-top: 12px; }
-.halloween-form input, .halloween-form select, .halloween-form textarea {
-  background: #100b1b;
-  color: white;
-  border-color: #694074;
-}
-.halloween-form .btn { width: 100%; }
-.review { border-left: 4px solid var(--accent); }
-.hidden { display: none; }
-@media(max-width:500px) {
-  main { padding: 15px; }
-  .halloween-card, .halloween-form { padding: 20px 15px; }
-  .halloween-decor { font-size: 28px; letter-spacing: 3px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox Studio Gids</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #101426;
+      color: white;
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6547ff, #a347ff);
+      text-align: center;
+      padding: 45px 20px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      background: #1b2038;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 8px;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #b9aaff;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    section {
+      background: #1b2038;
+      padding: 24px;
+      margin: 20px 0;
+      border-radius: 14px;
+      border: 1px solid #343b5c;
+    }
+
+    h2 {
+      color: #b9aaff;
+    }
+
+    a.button {
+      display: inline-block;
+      background: #7657ff;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    code {
+      color: #c9baff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #b9bfd6;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+  </style>
 </head>
+
 <body>
-<header id="home">
-  <h1>🏡 MiniPraathuis</h1>
-  <p>Een gezellige plek om samen te komen, plezier te maken en nieuwe dingen te beleven!</p>
-</header>
 
-<nav>
-  <a href="#home">Home</a>
-  <a href="#activiteiten">Activiteiten</a>
-  <a href="#funzone">Fun Zone</a>
-  <a href="#agenda">Agenda</a>
-  <a href="#halloween">Halloween 🎃</a>
-  <a href="#recensies">Recensies</a>
-  <a href="#contact">Contact</a>
-  <button id="themeToggle" type="button">☀️ Thema</button>
-</nav>
+  <header>
+    <h1>🎮 Roblox Studio Gids</h1>
+    <p>Leer stap voor stap hoe je samen een Roblox-game maakt!</p>
+  </header>
 
-<main>
-<section id="welkom">
-  <div class="card">
-    <h2>Welkom bij MiniPraathuis! 🎉</h2>
-    <p>Ontdek activiteiten, doe mee aan uitdagingen en verzamel coins op deze website.</p>
-    <p>Iedere keer dat je een activiteit uitvoert, kun je coins verdienen.</p>
-  </div>
-</section>
+  <nav>
+    <a href="#beginnen">Beginnen</a>
+    <a href="#bouwen">Bouwen</a>
+    <a href="#scripts">Scripts</a>
+    <a href="#testen">Testen</a>
+    <a href="#publiceren">Publiceren</a>
+  </nav>
 
-<section id="coins">
-  <h2>🪙 Mijn MiniCoins</h2>
-  <div class="card">
-    <p>Jouw saldo:</p>
-    <h2><span id="coinCount">0</span> coins</h2>
-    <div class="progress"><div id="progressFill"></div></div>
-    <p id="progressText">Nog 1.000 coins tot je gouden badge!</p>
-    <div id="goldBadge" class="badge hidden">🏆 GOUDEN MINI-PRAATHUIS BADGE</div>
-    <p class="notice">Je coins worden op dit apparaat in je browser opgeslagen. Ze worden niet automatisch tussen verschillende apparaten gesynchroniseerd.</p>
-    <button id="dailyCoins" type="button">🎁 Dagelijkse bonus (+25)</button>
-  </div>
-</section>
+  <main>
 
-<section id="activiteiten">
-  <h2>🎨 Activiteiten</h2>
-  <div class="grid">
-    <div class="card">
-      <div class="emoji">🎨</div>
-      <h3>Creatief bezig</h3>
-      <p>Maak een tekening, poster of ander kunstwerk.</p>
-      <button type="button" data-activity="creative">Voltooid: +20 coins</button>
-    </div>
-    <div class="card">
-      <div class="emoji">🧩</div>
-      <h3>Puzzelmoment</h3>
-      <p>Los een puzzel op of bedenk een raadsel.</p>
-      <button type="button" data-activity="puzzle">Voltooid: +15 coins</button>
-    </div>
-    <div class="card">
-      <div class="emoji">🌱</div>
-      <h3>Groene uitdaging</h3>
-      <p>Verzin een idee om de buurt groener te maken.</p>
-      <button type="button" data-activity="green">Voltooid: +20 coins</button>
-    </div>
-    <div class="card">
-      <div class="emoji">🤝</div>
-      <h3>Samen iets doen</h3>
-      <p>Bedenk een leuke activiteit om met anderen te doen.</p>
-      <button type="button" data-activity="together">Voltooid: +15 coins</button>
-    </div>
-  </div>
-</section>
+    <section id="beginnen">
+      <h2>1. Beginnen met Roblox Studio</h2>
+      <p>
+        Roblox Studio is het officiële programma waarmee je Roblox-games
+        maakt. Je kunt er werelden bouwen, voorwerpen plaatsen en scripts
+        schrijven.
+      </p>
 
-<section id="funzone">
-  <h2>🎮 Fun Zone</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>🎲 Willekeurige uitdaging</h3>
-      <p id="challengeText">Klik op de knop voor een uitdaging!</p>
-      <button id="newChallenge" type="button">Nieuwe uitdaging</button>
-    </div>
-    <div class="card">
-      <h3>💡 Ideeënbus</h3>
-      <p>Welk evenement zouden we kunnen organiseren?</p>
-      <form id="ideaForm">
-        <label for="idea">Jouw idee</label>
-        <textarea id="idea" maxlength="500" required placeholder="Mijn idee is..."></textarea>
-        <button type="submit">Idee bewaren</button>
-      </form>
-      <p id="ideaStatus" role="status"></p>
-    </div>
-  </div>
-</section>
+      <ol>
+        <li>Open de officiële Roblox Creator Hub.</li>
+        <li>Download Roblox Studio op een ondersteunde computer.</li>
+        <li>Log in met je Roblox-account.</li>
+        <li>Kies een nieuw project, bijvoorbeeld Baseplate.</li>
+      </ol>
 
-<section id="agenda">
-  <h2>📅 Agenda</h2>
-  <div class="grid">
-    <div class="card">
-      <div class="emoji">🎃</div>
-      <h3>Halloweenfeest</h3>
-      <p>Vrijdag 30 oktober 2026 om 18:30 uur.</p>
-      <p>Deelname: € 2,50 per persoon.</p>
-      <a class="btn" href="#halloween">Bekijk Halloween</a>
-    </div>
-    <div class="card">
-      <div class="emoji">🎉</div>
-      <h3>Nieuwe activiteiten</h3>
-      <p>Heb je een leuk idee voor een toekomstige activiteit? Stuur het in via de Ideeënbus.</p>
-      <a class="btn" href="#funzone">Idee insturen</a>
-    </div>
-  </div>
-</section>
+      <a class="button"
+         href="https://create.roblox.com/"
+         target="_blank"
+         rel="noopener">
+        Open Roblox Creator Hub
+      </a>
 
-<section id="halloween" class="old-halloween">
-  <div class="halloween-card">
-    <div class="halloween-tag">🎃 SPECIAAL EVENEMENT</div>
-    <div class="halloween-decor">👻 🎃 🦇</div>
-    <h2>Halloween bij MiniPraathuis 👻</h2>
-    <p>Durf jij het aan? Kom gezellig Halloween vieren bij MiniPraathuis! Er staat een spannende en gezellige avond op je te wachten.</p>
-    <div class="halloween-details">
-      <div class="halloween-detail"><span>📅</span><strong>Datum</strong><p>30 oktober 2026</p></div>
-      <div class="halloween-detail"><span>🕡</span><strong>Tijd</strong><p>18:30 uur</p></div>
-      <div class="halloween-detail"><span>💰</span><strong>Deelname</strong><p>€ 2,50 per persoon</p></div>
-    </div>
-    <a href="#halloweenAanmelden" class="btn">🎃 Ik wil me aanmelden!</a>
-    <p>🕸️ Een gezellige Halloweenavond bij MiniPraathuis! 🕸️</p>
-    <h3 style="color:#ffab54;margin-top:24px">⏳ Aftellen tot Halloween</h3>
-    <h2 id="countdown">We tellen af...</h2>
-  </div>
+      <p><strong>Let op:</strong> Roblox Studio werkt officieel op Windows
+      en Mac, niet rechtstreeks op een Android-tablet.</p>
+    </section>
 
-  <div class="halloween-form" id="halloweenAanmelden">
-    <h3>Meld je aan! 👻</h3>
-    <p>Vul hieronder je gegevens in om je aan te melden.</p>
-    <form action="https://formspree.io/f/mbgdorbq" method="POST">
-      <input type="hidden" name="_subject" value="Halloween-aanmelding MiniPraathuis">
-      <label for="halloweenNaam">Naam</label>
-      <input id="halloweenNaam" name="naam" maxlength="100" required placeholder="Je naam">
+    <section id="bouwen">
+      <h2>2. Je eerste wereld bouwen</h2>
+      <p>Zo begin je met het bouwen van een eigen game:</p>
 
-      <label for="halloweenAantal">Aantal personen</label>
-      <select id="halloweenAantal" name="aantal_personen" required>
-        <option value="1">1 persoon — € 2,50</option>
-        <option value="2">2 personen — € 5,00</option>
-        <option value="3">3 personen — € 7,50</option>
-        <option value="4">4 personen — € 10,00</option>
-        <option value="5">5 personen — € 12,50</option>
-        <option value="6">6 personen — € 15,00</option>
-        <option value="7">7 personen — € 17,50</option>
-        <option value="8">8 personen — € 20,00</option>
-        <option value="9">9 personen — € 22,50</option>
-        <option value="10">10 personen — € 25,00</option>
-        <option value="11">11 personen — € 27,50</option>
-        <option value="12">12 personen — € 30,00</option>
-        <option value="13">13 personen — € 32,50</option>
-        <option value="14">14 personen — € 35,00</option>
-        <option value="15">15 personen — € 37,50</option>
-        <option value="16">16 personen — € 40,00</option>
-        <option value="17">17 personen — € 42,50</option>
-        <option value="18">18 personen — € 45,00</option>
-        <option value="19">19 personen — € 47,50</option>
-        <option value="20">20 personen — € 50,00</option>
-      </select>
+      <ul>
+        <li><strong>Explorer:</strong> bekijk alle onderdelen van je game.</li>
+        <li><strong>Properties:</strong> verander de eigenschappen van een voorwerp.</li>
+        <li><strong>Part:</strong> voeg een blok toe aan je wereld.</li>
+        <li><strong>Move:</strong> verplaats een voorwerp.</li>
+        <li><strong>Scale:</strong> maak een voorwerp groter of kleiner.</li>
+        <li><strong>Rotate:</strong> draai een voorwerp.</li>
+      </ul>
 
-      <label for="halloweenBericht">Bericht (optioneel)</label>
-      <textarea id="halloweenBericht" name="bericht" rows="3" maxlength="500" placeholder="Nog iets te vertellen?"></textarea>
-      <button class="btn" type="submit">✅ Aanmelding versturen</button>
-    </form>
-  </div>
-</section>
+      <p><strong>Tip:</strong> begin met een simpele wereld. Voeg daarna
+      stap voor stap meer details toe.</p>
+    </section>
 
-<section id="recensies">
-  <h2>⭐ Recensies</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Laat een recensie achter</h3>
-      <form id="reviewForm">
-        <label for="reviewName">Naam of bijnaam</label>
-        <input id="reviewName" maxlength="60" required placeholder="Je naam">
-        <label for="reviewRating">Beoordeling</label>
-        <select id="reviewRating" required>
-          <option value="5">⭐⭐⭐⭐⭐ - Super!</option>
-          <option value="4">⭐⭐⭐⭐ - Leuk!</option>
-          <option value="3">⭐⭐⭐ - Prima</option>
-          <option value="2">⭐⭐ - Kan beter</option>
-          <option value="1">⭐ - Niet zo leuk</option>
-        </select>
-        <label for="reviewText">Jouw recensie</label>
-        <textarea id="reviewText" maxlength="500" required placeholder="Wat vond je ervan?"></textarea>
-        <button type="submit">Recensie plaatsen</button>
-      </form>
-      <p class="notice">Recensies worden alleen in deze browser opgeslagen en zijn niet automatisch zichtbaar voor andere bezoekers.</p>
-    </div>
-    <div class="card">
-      <h3>Bezoekersrecensies</h3>
-      <div id="reviewsList"><p>Nog geen recensies. Wees de eerste!</p></div>
-    </div>
-  </div>
-</section>
+    <section id="scripts">
+      <h2>3. Leren programmeren</h2>
+      <p>
+        Roblox gebruikt een programmeertaal die Luau heet. Met scripts
+        kun je voorwerpen laten bewegen, knoppen laten werken en
+        gebeurtenissen in je game maken.
+      </p>
 
-<section id="contact">
-  <h2>✉️ Contact</h2>
-  <div class="card">
-    <p>Heb je een vraag of een idee? Stuur ons een bericht.</p>
-    <form action="https://formspree.io/f/mbgdorbq" method="POST">
-      <input type="hidden" name="_subject" value="Bericht via MiniPraathuis">
-      <label for="contactName">Naam</label>
-      <input id="contactName" name="naam" maxlength="100" required>
-      <label for="contactEmail">E-mailadres</label>
-      <input id="contactEmail" name="email" type="email" maxlength="200" required>
-      <label for="contactMessage">Bericht</label>
-      <textarea id="contactMessage" name="bericht" rows="4" maxlength="2000" required></textarea>
-      <button type="submit">Bericht versturen</button>
-    </form>
-    <p>📍 Locatie: Doelstraat 4</p>
-  </div>
-</section>
-</main>
+      <p>Voorbeeld: een blok dat van kleur verandert wanneer iemand
+      het aanraakt.</p>
 
-<footer>
-  <p>🏡 MiniPraathuis · Samen maken we het gezellig!</p>
-  <p>© <span id="year"></span> MiniPraathuis</p>
-</footer>
+      <pre><code>local part = script.Parent
 
-<script>
-const $ = id => document.getElementById(id);
+part.Touched:Connect(function()
+    part.BrickColor = BrickColor.Random()
+end)</code></pre>
 
-function readNumber(key, fallback = 0) {
-  try {
-    const value = Number(localStorage.getItem(key));
-    return Number.isFinite(value) && value >= 0 ? value : fallback;
-  } catch {
-    return fallback;
-  }
-}
-function readJSON(key, fallback) {
-  try {
-    const value = JSON.parse(localStorage.getItem(key));
-    return Array.isArray(value) ? value : fallback;
-  } catch {
-    return fallback;
-  }
-}
-function save(key, value) {
-  try { localStorage.setItem(key, value); } catch {}
-}
+      <ol>
+        <li>Voeg een blok toe aan je wereld.</li>
+        <li>Klik met de rechtermuisknop op het blok in Explorer.</li>
+        <li>Kies Insert Object en daarna Script.</li>
+        <li>Vervang de voorbeeldcode door de code hierboven.</li>
+        <li>Start de game om het uit te proberen.</li>
+      </ol>
 
-let coins = readNumber("miniPraathuisCoins");
-const doneActivities = new Set(readJSON("miniPraathuisDone", []));
-function renderCoins() {
-  $("coinCount").textContent = coins.toLocaleString("nl-NL");
-  const percent = Math.min(100, coins / 1000 * 100);
-  $("progressFill").style.width = percent + "%";
-  $("progressText").textContent = coins >= 1000
-    ? "Je hebt de 1.000 coins gehaald! Gefeliciteerd! 🎉"
-    : `Nog ${(1000 - coins).toLocaleString("nl-NL")} coins tot je gouden badge!`;
-  $("goldBadge").classList.toggle("hidden", coins < 1000);
-}
-function addCoins(amount) {
-  coins += amount;
-  save("miniPraathuisCoins", String(coins));
-  renderCoins();
-}
-document.querySelectorAll("[data-activity]").forEach(button => {
-  const id = button.dataset.activity;
-  if (doneActivities.has(id)) {
-    button.disabled = true;
-    button.textContent = "Al voltooid ✓";
-  }
-  button.addEventListener("click", () => {
-    if (doneActivities.has(id)) return;
-    const amounts = {creative:20,puzzle:15,green:20,together:15};
-    doneActivities.add(id);
-    save("miniPraathuisDone", JSON.stringify([...doneActivities]));
-    button.disabled = true;
-    button.textContent = "Al voltooid ✓";
-    addCoins(amounts[id] || 0);
-  });
-});
-$("dailyCoins").addEventListener("click", () => {
-  const today = new Date().toLocaleDateString("sv-SE");
-  if (localStorage.getItem("miniPraathuisDaily") === today) {
-    alert("Je hebt je dagelijkse bonus vandaag al opgehaald!");
-    return;
-  }
-  save("miniPraathuisDaily", today);
-  addCoins(25);
-  $("dailyCoins").textContent = "Bonus opgehaald ✓";
-  $("dailyCoins").disabled = true;
-});
-if (localStorage.getItem("miniPraathuisDaily") === new Date().toLocaleDateString("sv-SE")) {
-  $("dailyCoins").textContent = "Bonus opgehaald ✓";
-  $("dailyCoins").disabled = true;
-}
-renderCoins();
+      <p>Leer eerst kleine scripts begrijpen voordat je grote scripts
+      gaat maken.</p>
+    </section>
 
-const challenges = [
-  "Bedenk drie nieuwe activiteiten voor MiniPraathuis.",
-  "Maak een vrolijke tekening of mini-poster.",
-  "Verzin een raadsel voor je vrienden.",
-  "Bedenk een manier om de buurt schoner te maken.",
-  "Maak een lijst met vijf leuke spelletjes.",
-  "Bedenk een thema voor een volgend evenement."
-];
-$("newChallenge").addEventListener("click", () => {
-  $("challengeText").textContent = challenges[Math.floor(Math.random() * challenges.length)];
-});
+    <section id="testen">
+      <h2>4. Je game testen</h2>
 
-$("ideaForm").addEventListener("submit", event => {
-  event.preventDefault();
-  const idea = $("idea").value.trim();
-  if (!idea) return;
-  const ideas = readJSON("miniPraathuisIdeas", []);
-  ideas.push({idea, date:new Date().toLocaleDateString("nl-NL")});
-  save("miniPraathuisIdeas", JSON.stringify(ideas));
-  $("idea").value = "";
-  $("ideaStatus").textContent = "Bedankt! Je idee is op dit apparaat bewaard. 💡";
-});
+      <ul>
+        <li>Druk in Roblox Studio op Play.</li>
+        <li>Controleer of je personage goed kan bewegen.</li>
+        <li>Test of je scripts werken.</li>
+        <li>Open View en daarna Output om foutmeldingen te bekijken.</li>
+        <li>Los fouten één voor één op.</li>
+      </ul>
 
-function renderReviews() {
-  const reviews = readJSON("miniPraathuisReviews", []);
-  const list = $("reviewsList");
-  list.replaceChildren();
-  if (!reviews.length) {
-    list.textContent = "Nog geen recensies. Wees de eerste!";
-    return;
-  }
-  reviews.slice().reverse().forEach(review => {
-    const card = document.createElement("div");
-    card.className = "card review";
-    const name = document.createElement("strong");
-    name.textContent = review.name;
-    const stars = document.createElement("p");
-    stars.textContent = "⭐".repeat(review.rating);
-    const message = document.createElement("p");
-    message.textContent = review.text;
-    const date = document.createElement("small");
-    date.textContent = review.date;
-    card.append(name, stars, message, date);
-    list.append(card);
-  });
-}
-$("reviewForm").addEventListener("submit", event => {
-  event.preventDefault();
-  const reviews = readJSON("miniPraathuisReviews", []);
-  reviews.push({
-    name:$("reviewName").value.trim(),
-    rating:Number($("reviewRating").value),
-    text:$("reviewText").value.trim(),
-    date:new Date().toLocaleDateString("nl-NL")
-  });
-  save("miniPraathuisReviews", JSON.stringify(reviews));
-  $("reviewForm").reset();
-  renderReviews();
-});
-renderReviews();
+      <p>Test na iedere belangrijke verandering. Zo vind je problemen
+      sneller.</p>
+    </section>
 
-$("themeToggle").addEventListener("click", () => {
-  document.body.classList.toggle("light");
-  save("miniPraathuisTheme", document.body.classList.contains("light") ? "light" : "dark");
-});
-if (localStorage.getItem("miniPraathuisTheme") === "light") {
-  document.body.classList.add("light");
-}
+    <section id="publiceren">
+      <h2>5. Je game publiceren</h2>
 
-function updateCountdown() {
-  const eventDate = new Date("2026-10-30T18:30:00");
-  const distance = eventDate.getTime() - Date.now();
-  if (distance <= 0) {
-    $("countdown").textContent = "Het is Halloween! 🎃";
-    return;
-  }
-  const days = Math.floor(distance / 86400000);
-  const hours = Math.floor(distance % 86400000 / 3600000);
-  const minutes = Math.floor(distance % 3600000 / 60000);
-  const seconds = Math.floor(distance % 60000 / 1000);
-  $("countdown").textContent = `${days} dagen · ${hours} uur · ${minutes} min · ${seconds} sec`;
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
-$("year").textContent = new Date().getFullYear();
-</script>
+      <ol>
+        <li>Test eerst of je game werkt.</li>
+        <li>Open het menu File in Roblox Studio.</li>
+        <li>Kies Publish to Roblox of de vergelijkbare publicatieoptie.</li>
+        <li>Vul de naam en beschrijving van je game in.</li>
+        <li>Controleer de instellingen en toegangsrechten.</li>
+      </ol>
+
+      <p>Je kunt de officiële uitleg hier vinden:</p>
+
+      <a class="button"
+         href="https://create.roblox.com/docs"
+         target="_blank"
+         rel="noopener">
+        Roblox documentatie
+      </a>
+    </section>
+
+    <section>
+      <h2>✅ Checklist</h2>
+      <p>Vink af wat je al hebt geleerd:</p>
+
+      <label>
+        <input type="checkbox"> Ik weet hoe Roblox Studio werkt.
+      </label><br>
+
+      <label>
+        <input type="checkbox"> Ik kan onderdelen toevoegen.
+      </label><br>
+
+      <label>
+        <input type="checkbox"> Ik begrijp de basis van scripts.
+      </label><br>
+
+      <label>
+        <input type="checkbox"> Ik kan mijn game testen.
+      </label><br>
+
+      <label>
+        <input type="checkbox"> Ik weet hoe publiceren werkt.
+      </label>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>🎮 Roblox Studio Gids — Samen leren, samen bouwen!</p>
+  </footer>
+
 </body>
 </html>
-```
